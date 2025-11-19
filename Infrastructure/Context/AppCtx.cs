@@ -30,7 +30,8 @@ namespace Infrastructure.Context
 
             modelBuilder.Entity<User>().HasMany(x => x.Salaries)
                                        .WithOne(x => x.User)
-                                       .HasForeignKey(x => x.UserId);
+                                       .HasForeignKey(x => x.UserId)
+                                       ;
            //Salary
 
             modelBuilder.Entity<Salary>().HasKey(x => x.Id);

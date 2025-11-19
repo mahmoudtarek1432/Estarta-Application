@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.RepositoryAbstraction
+namespace Domain.RepositoryAbstraction.Base
 {
-    public interface IRepositoryBase<T, R> where T : EntityBase<T>, IAggregateRoot
+    public interface IRepositoryBase<T, R> where T : class, IAggregateRoot
     {
 
         public Task<IEnumerable<T>> GetAll();

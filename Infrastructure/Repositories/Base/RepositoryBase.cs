@@ -1,5 +1,5 @@
 ﻿using Domain.Entities.Abstraction;
-using Domain.RepositoryAbstraction;
+using Domain.RepositoryAbstraction.Base;
 using Microsoft.EntityFrameworkCore;
 using Shared_Kernal.Interfaces;
 using System;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Infrastructure.Repositories.RepositoryBase
 {
     public abstract class RepositoryBase<T,R>: IRepositoryBase<T,R>
-    where T : EntityBase<T>, IAggregateRoot
+    where T : class, IAggregateRoot
     {
         public DbContext _ctx;
 

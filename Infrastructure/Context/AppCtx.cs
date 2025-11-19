@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Context
 {
-    class AppCtx : DbContext
+    public class AppCtx : DbContext
     {
-        DbSet<User> Users { get; set; }
-        DbSet<Salary> Salaries { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
 
         public AppCtx(DbContextOptions opt) : base(opt)
         {

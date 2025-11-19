@@ -14,6 +14,8 @@ namespace Domain.Entities
         public AccountInfo UserAccountInfo { get; set; }
         public bool IsActive { get; private set; } = false;
 
+        public List<Salary>? Salaries { get; set; }
+
         public User ActivateUser(bool isActive)
         {
             IsActive = isActive;

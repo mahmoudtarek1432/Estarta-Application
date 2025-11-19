@@ -31,6 +31,18 @@ namespace Shared_Kernal.Guards
                     throw new ArgumentException("Should be a valid mobile!", ParamName);
                 }
             }
+
+            public static void CantBeNegative(int value, string paramName)
+            {
+                if (value < 0)
+                    throw new BusinessLogicException($"The Property {paramName} can't be negative");
+            }
+
+            public static void CantBeNegative(decimal value, string paramName)
+            {
+                if (value < 0)
+                    throw new BusinessLogicException($"The Property {paramName} can't be negative");
+            }
         }
     }
 }

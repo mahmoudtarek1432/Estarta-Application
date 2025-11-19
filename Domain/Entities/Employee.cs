@@ -13,14 +13,11 @@ namespace Domain.Entities
         public CivilInfo UserCivilInfo { get; set; }
         public AccountInfo UserAccountInfo { get; set; }
         public bool IsActive { get; private set; } = false;
-    }
 
-    public class Salaries : EntityBase<int>, IAggregateRoot
-    {
-
-        public int UserId { get; private set; }
-        public decimal Salary { get; private set; }
-        public IssueDate issueDate { get; set; }
-        public User User { get; set; }
+        public User ActivateUser(bool isActive)
+        {
+            IsActive = isActive;
+            return this;
+        }
     }
 }

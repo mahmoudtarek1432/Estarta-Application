@@ -1,0 +1,6 @@
+@Estarta_Application_HostAddress = http://localhost:5177
+
+GET {{Estarta_Application_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

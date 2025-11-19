@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Guards
+namespace Shared_Kernal.Guards
 {
     public class BusinessLogicException : Exception
     {

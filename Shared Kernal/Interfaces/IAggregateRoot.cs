@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared_Kernal.Interfaces
 {
-    public class IAggregateRoot
+    public interface IAggregateRoot
     {
     }
 }

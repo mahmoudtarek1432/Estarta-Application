@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Application.Guards
+namespace Shared_Kernal.Guards
 {
     //generic guard class for validating input parameters
     public static class Guard
@@ -22,6 +22,14 @@ namespace Application.Guards
             {
                 if (!email.Contains("@"))
                     throw new BusinessLogicException($"The Property {ParamName} is not a valid email");
+            }
+
+            public static void ValidatePhone(string input, string ParamName)
+            {
+                if (!Regex.IsMatch(input, @"^\d+$"))
+                {
+                    throw new ArgumentException("Should be a valid mobile!", ParamName);
+                }
             }
         }
     }

@@ -64,7 +64,12 @@ namespace Infrastructure.Context
                                      opt.Property(x => x.Month).HasColumnName(nameof(IssueDate.Month));
                                      opt.Property(x => x.Year).HasColumnName(nameof(IssueDate.Year));
                                  });
-#endregion
+            #endregion
+
+            #region Mapping
+
+            modelBuilder.Entity<Salary>().Ignore(e => e.SummerMonthList);
+            #endregion
 
             base.OnModelCreating(modelBuilder);
         }

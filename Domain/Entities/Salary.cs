@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Abstraction;
+﻿using Domain.Constants;
+using Domain.Entities.Abstraction;
 using Shared_Kernal.Guards;
 using Shared_Kernal.Interfaces;
 using System;
@@ -16,6 +17,8 @@ namespace Domain.Entities
         public IssueDate issueDate { get; set; }
         public User User { get; set; }
 
+        public List<Month> SummerMonthList { get; private set; } = new() { Month.JUN, Month.JUL, Month.AUG };
+
         public Salary SetUserId(int userId)
         {
             UserId = userId;
@@ -28,6 +31,22 @@ namespace Domain.Entities
 
             Amount = amount;
             return this;
+        }
+
+        public decimal SalaryCalculations()
+        {
+            var SalaryPostDateAdjustment = IssueDateSalaryAdjustment();
+            return SalaryPostDateAdjustment;
+        }
+
+        public decimal IssueDateSalaryAdjustment()
+        {
+            if (this.issueDate.Month == (int)Month.DEC)
+                return Amount + (Amount * 0.1m);
+            else if (SummerMonthList.Contains( (Month) this.issueDate.Month))
+                return Amount - (Amount * 0.05m);
+
+            return Amount;
         }
     }
 }

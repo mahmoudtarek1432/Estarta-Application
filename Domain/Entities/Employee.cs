@@ -21,5 +21,19 @@ namespace Domain.Entities
             IsActive = isActive;
             return this;
         }
+
+        public decimal BaseSalarySum() => Salaries.Sum(e => e.SalaryCalculations());
+
+
+        public decimal AverageSalary() => BaseSalarySum() / Salaries.Count; 
+
+        public decimal DetuctTax(int totalSalary) => totalSalary - totalSalary * 0.07m;
+
+        public bool ShouldDetuctTax(int totalSalary) => totalSalary > 10000;
+
+        public bool IsEmployeeFeasibleFromSalaryCalculation()
+        {
+            return Salaries!.Count >= 3;
+        }
     }
 }

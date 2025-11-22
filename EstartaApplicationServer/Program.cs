@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppCtx>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
+builder.Services.AddMemoryCache();
 
 IOC.Application.ApplicationDI.AddApplicationServices(builder.Services);
 IOC.Infrastructure.InfrastructureDI.AddInfrastructureServices(builder.Services);

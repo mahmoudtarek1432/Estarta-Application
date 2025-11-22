@@ -15,7 +15,7 @@ namespace Domain.Entities
         public int UserId { get; private set; }
         public decimal Amount { get; private set; }
         public IssueDate issueDate { get; set; }
-        public User User { get; set; }
+        public Employee Employee { get; set; }
 
         public Salary() { }
 

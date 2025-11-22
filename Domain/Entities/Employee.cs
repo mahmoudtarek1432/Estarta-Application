@@ -4,7 +4,7 @@ using Shared_Kernal.Interfaces;
 
 namespace Domain.Entities
 {
-    public class User : EntityBase<int>, IAggregateRoot
+    public class Employee : EntityBase<int>, IAggregateRoot
     {
         public CivilInfo UserCivilInfo { get; set; }
         public AccountInfo UserAccountInfo { get; set; }
@@ -14,7 +14,7 @@ namespace Domain.Entities
 
         
 
-        public User ActivateUser(bool isActive)
+        public Employee ActivateUser(bool isActive)
         {
             IsActive = isActive;
             return this;
@@ -29,7 +29,7 @@ namespace Domain.Entities
 
         public bool ShouldDetuctTax(int totalSalary) => totalSalary > 10000;
 
-        public string GetUserSalaryStatus() {
+        public string GetEmployeeSalaryStatus() {
             var averageSalary = AverageSalary();
             if (averageSalary > 2000)
                 return "GREEN";
@@ -43,7 +43,7 @@ namespace Domain.Entities
         {
             return Salaries!.Count >= 3;
         }
-        public User(CivilInfo userCivilInfo, AccountInfo userAccountInfo, List<Salary>? salaries = null)
+        public Employee(CivilInfo userCivilInfo, AccountInfo userAccountInfo, List<Salary>? salaries = null)
         {
             UserCivilInfo = userCivilInfo;
             UserAccountInfo = userAccountInfo;
@@ -51,6 +51,6 @@ namespace Domain.Entities
             IsActive = true;
         }
 
-        public User() { }
+        public Employee() { }
     }
 }

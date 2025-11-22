@@ -11,12 +11,12 @@ namespace Infrastructure.Seed
     {
         public static async Task SeedAsync(AppCtx context)
         {
-            if (await context.Users.AnyAsync())
+            if (await context.Employee.AnyAsync())
                 return; // Prevent duplicate seeding
 
-            var users = new List<User>
+            var users = new List<Employee>
             {
-                new User ( new CivilInfo("joe","doe","NAT1001"), new AccountInfo( "jdoe","jdoe@example.com","0791111111")) 
+                new Employee ( new CivilInfo("joe","doe","NAT1001"), new AccountInfo( "jdoe","jdoe@example.com","0791111111")) 
                 //new User { Id = 2, Username = "asalem", NationalNumber = "NAT1002", Email = "asalem@example.com", Phone = "0792222222", IsActive = true },
                 //new User { Id = 3, Username = "rhamdan", NationalNumber = "NAT1003", Email = "rhamdan@example.com", Phone = "0793333333", IsActive = false },
                 //new User { Id = 4, Username = "lbarakat", NationalNumber = "NAT1004", Email = "lbarakat@example.com", Phone = "0794444444", IsActive = true },
@@ -30,7 +30,7 @@ namespace Infrastructure.Seed
                 //new User { Id = 12, Username = "aali", NationalNumber = "NAT1012", Email = "aali@example.com", Phone = "0781088101", IsActive = true }
             };
 
-            await context.Users.AddRangeAsync(users);
+            await context.Employee.AddRangeAsync(users);
             await context.SaveChangesAsync();
 
             var salaries = new List<Salary>

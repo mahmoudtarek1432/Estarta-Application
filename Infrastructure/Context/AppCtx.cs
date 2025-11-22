@@ -11,7 +11,7 @@ namespace Infrastructure.Context
 {
     public class AppCtx : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Employee> Employee { get; set; }
         public DbSet<Salary> Salaries { get; set; }
 
         public AppCtx(DbContextOptions<AppCtx> opt) : base(opt)
@@ -30,11 +30,11 @@ namespace Infrastructure.Context
             #region indexing
 
             //User
-            modelBuilder.Entity<User>().HasKey(x => x.Id);
+            modelBuilder.Entity<Employee>().HasKey(x => x.Id);
 
 
-            modelBuilder.Entity<User>().HasMany(x => x.Salaries)
-                                       .WithOne(x => x.User)
+            modelBuilder.Entity<Employee>().HasMany(x => x.Salaries)
+                                       .WithOne(x => x.Employee)
                                        .HasForeignKey(x => x.UserId)
                                        ;
            //Salary
@@ -46,7 +46,7 @@ namespace Infrastructure.Context
             #endregion
 
             #region Value Object
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<Employee>()
                         .OwnsOne(e => e.UserCivilInfo,
                                  opt =>
                                  {
@@ -54,7 +54,7 @@ namespace Infrastructure.Context
                                      opt.HasIndex(x => x.NationalNumber);
                                  });
 
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<Employee>()
                         .OwnsOne(e => e.UserAccountInfo,
                                  opt =>
                                  {

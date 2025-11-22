@@ -1,4 +1,7 @@
 ﻿using Domain.Entities.Abstraction;
+// ...existing code...
+// No changes needed in this file for the caching layer itself.
+// ...existing code...
 using Domain.RepositoryAbstraction.Base;
 using Microsoft.EntityFrameworkCore;
 using Shared_Kernal.Interfaces;
@@ -20,8 +23,21 @@ namespace Infrastructure.Repositories.RepositoryBase
             _ctx = ctx;
         }
 
-        public async Task<IEnumerable<T>> GetAll() {
-            return await _ctx.Set<T>().ToListAsync();
+        public async Task<IEnumerable<T>> GetAll(params string[]? includes)
+        {
+            var query = _ctx.Set<T>().AsQueryable();
+
+          
+
+            if (includes != null)
+            {
+                foreach (var navProperty in includes)
+                {
+                    query = query.Include(navProperty);
+                }
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<T?> GetById<K>(K id)

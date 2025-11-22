@@ -17,6 +17,10 @@ namespace Domain.Entities
         public IssueDate issueDate { get; set; }
         public User User { get; set; }
 
+        public Salary() { }
+
+
+
         public List<Month> SummerMonthList { get; private set; } = new() { Month.JUN, Month.JUL, Month.AUG };
 
         public Salary SetUserId(int userId)
@@ -47,6 +51,12 @@ namespace Domain.Entities
                 return Amount - (Amount * 0.05m);
 
             return Amount;
+        }
+        public Salary(int userId, decimal amount, IssueDate issueDate)
+        {
+            SetUserId(userId);
+            SetAmount(amount);
+            this.issueDate = issueDate;
         }
     }
 }

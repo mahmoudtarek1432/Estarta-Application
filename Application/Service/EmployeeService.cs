@@ -33,7 +33,8 @@ namespace Application.Service
                 throw new Exception("Employee is not feasible for status calculation");
             var highestSalary = user.Salaries.Max(e => e.SalaryCalculations());
             var averageSalary = user.AverageSalary();
-            var status = user.ShouldDetuctTax((int)averageSalary) ? "Taxed" : "Non-Taxed";
+            var status = user.GetUserSalaryStatus();
+
             return new EmployeeStatusDto
             {
                 EmployeeName = user.UserCivilInfo.FullName,

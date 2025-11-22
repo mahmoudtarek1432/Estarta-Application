@@ -28,5 +28,12 @@ namespace Domain.Entities
             Month = month;
             return this;
         }
+        public IssueDate(int year, int month)
+        {
+            SetYear(year);
+            SetMonth(month);
+        }
+
+        public IssueDate() { }
     }
 }

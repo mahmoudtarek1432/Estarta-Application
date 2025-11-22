@@ -37,5 +37,11 @@ namespace Domain.Entities
             PhoneNumber = phoneNumber;
             return this;
         }
+        public AccountInfo(string userName, string email, string phoneNumber)
+        {
+            SetUserName(userName);
+            SetEmail(email);
+            SetPhoneNumber(phoneNumber);
+        }
     }
 }

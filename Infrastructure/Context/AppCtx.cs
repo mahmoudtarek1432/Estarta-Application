@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Seed;
 
 namespace Infrastructure.Context
 {
@@ -18,6 +19,11 @@ namespace Infrastructure.Context
             
         }
 
+        public async Task SeedDatabaseAsync()
+        {
+            await DatabaseSeeder.SeedAsync(this);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -26,7 +32,6 @@ namespace Infrastructure.Context
             //User
             modelBuilder.Entity<User>().HasKey(x => x.Id);
 
-            modelBuilder.Entity<User>().HasIndex(x => x.UserCivilInfo.NationalNumber);
 
             modelBuilder.Entity<User>().HasMany(x => x.Salaries)
                                        .WithOne(x => x.User)
@@ -46,6 +51,7 @@ namespace Infrastructure.Context
                                  opt =>
                                  {
                                      opt.Property(x => x.NationalNumber).HasColumnName(nameof(CivilInfo.NationalNumber));
+                                     opt.HasIndex(x => x.NationalNumber);
                                  });
 
             modelBuilder.Entity<User>()

@@ -10,13 +10,13 @@ namespace Estarta_Application.Controllers.Employee
     {
         public IEmployeeService _empService;
 
-
+      
         public GetEmpStatusEndpoint(IEmployeeService empService)
         {
             _empService = empService;
         }
 
-
+        [HttpGet]
         public override async Task<ResponseBase<EmployeeStatusDto?>> HandleAsync(GetEmpStatusEndpointRequest request, CancellationToken cancellationToken = default)
         {
             var empStatus = await _empService.GetEmployeeStatus(request.NationalNumber);

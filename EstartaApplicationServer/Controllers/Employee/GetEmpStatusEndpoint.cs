@@ -19,7 +19,7 @@ namespace Estarta_Application.Controllers.Employee
         }
 
         [HttpGet]
-        public override async Task<ResponseBase<EmployeeStatusDto?>> HandleAsync(GetEmpStatusEndpointRequest request, CancellationToken cancellationToken = default)
+        public override async Task<ResponseBase<EmployeeStatusDto?>> HandleAsync([FromQuery]GetEmpStatusEndpointRequest request, CancellationToken cancellationToken = default)
         {
             var empStatus = await _empService.GetEmployeeStatus(request.NationalNumber);
             var response = ResponseBase<EmployeeStatusDto>.Success(await _empService.GetEmployeeStatus(request.NationalNumber));

@@ -1,11 +1,7 @@
 ﻿using Application.DTOs;
 using Application.Service.Base;
 using Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Shared_Kernal.Guards;
 
 namespace Application.Service
 {
@@ -28,9 +24,11 @@ namespace Application.Service
         {
             var user = await _userRepository.GetUserByNationNumber(NationalNumber);
             if (user == null)
-                throw new Exception("User not found");
+                throw new NotFoundException("National Number not found");
+            if (user.IsActive == null)
+                throw new NotAcceptableException("User is not active");
             if (!user.IsEmployeeFeasibleFromSalaryCalculation())
-                throw new Exception("Employee is not feasible for status calculation");
+                throw new UnProcessableEntityException("INSUFFICIENT_DATA");
             var highestSalary = user.Salaries.Max(e => e.SalaryCalculations());
             var averageSalary = user.AverageSalary();
             var status = user.GetUserSalaryStatus();

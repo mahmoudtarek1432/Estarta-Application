@@ -13,6 +13,8 @@ namespace Infrastructure.Context
     {
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Salary> Salaries { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public AppCtx(DbContextOptions<AppCtx> opt) : base(opt)
         {
@@ -75,6 +77,14 @@ namespace Infrastructure.Context
             #region Mapping
 
             modelBuilder.Entity<Salary>().Ignore(e => e.SummerMonthList);
+
+            // Configure optional 1-1 relationship between User and Employee
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Employee)
+                .WithOne(e => e.User)
+                .HasForeignKey<Employee>(e => e.UserId)
+                .IsRequired(false);
+
             #endregion
 
             base.OnModelCreating(modelBuilder);

@@ -2,10 +2,12 @@
 using Estarta_Application.Model.Base;
 using Application.DTOs;
 using Application.Service.Base;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Estarta_Application.Controllers.Employee
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class GetEmpStatusEndpoint : Ardalis.ApiEndpoints.EndpointBaseAsync.WithRequest<GetEmpStatusEndpointRequest>.WithResult<ResponseBase<EmployeeStatusDto?>>
     {
         public IEmployeeService _empService;

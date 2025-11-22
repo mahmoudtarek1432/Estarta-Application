@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using Domain.RepositoryAbstraction;
 
 namespace IOC.Infrastructure
 {
@@ -8,6 +9,7 @@ namespace IOC.Infrastructure
         public static void AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

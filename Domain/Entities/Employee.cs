@@ -12,7 +12,8 @@ namespace Domain.Entities
 
         public List<Salary>? Salaries { get; set; }
 
-        
+        public int? UserId { get; set; }
+        public User? User { get; set; }
 
         public Employee ActivateUser(bool isActive)
         {

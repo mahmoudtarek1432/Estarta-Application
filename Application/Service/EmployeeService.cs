@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.Service.Base;
 using Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Service
 {
-    public class EmployeeService
+    public class EmployeeService : IEmployeeService
     {
         private IUserRepository _userRepository { get; set; }
         public EmployeeService(IUserRepository userRepository) {

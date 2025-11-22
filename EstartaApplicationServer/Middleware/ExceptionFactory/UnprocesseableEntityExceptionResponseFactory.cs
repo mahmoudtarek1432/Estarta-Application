@@ -1,8 +1,6 @@
 using System.Net;
-using System.ComponentModel.DataAnnotations;
 using Shared_Kernal.Guards;
 using Estarta_Application.Model.Base;
-using Estarta_Application.Middleware.ExceptionFactory;
 using Estarta_Application.Middleware.ExceptionFactory.Abstraction;
 
 namespace EstartaApplicationServer.Middleware
@@ -14,9 +12,9 @@ namespace EstartaApplicationServer.Middleware
         public object CreateResponse(Exception exception)
         {
             var validationEx = exception as UnProcessableEntityException;
-            return new ResponseBase
+            return new ErrorResponse
             {
-                Message = validationEx?.Message ?? "Entity Unprocessable."
+                Error = validationEx?.Message ?? "Entity Unprocessable."
             };
         }
     }

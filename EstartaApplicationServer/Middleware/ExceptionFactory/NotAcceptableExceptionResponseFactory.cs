@@ -13,9 +13,9 @@ namespace EstartaApplicationServer.Middleware
         public object CreateResponse(Exception exception)
         {
             var validationEx = exception as NotAcceptableException;
-            return new ResponseBase
+            return new ErrorResponse
             {
-                Message = validationEx?.Message ?? "Not Acceptable Request."
+                Error = validationEx?.Message ?? "Not Acceptable Request."
             };
         }
     }

@@ -1,4 +1,5 @@
 using Estarta_Application.Middleware.ExceptionFactory.Abstraction;
+using Estarta_Application.Model.Base;
 using System.Net;
 
 namespace Estarta_Application.Middleware.ExceptionFactory
@@ -9,10 +10,9 @@ namespace Estarta_Application.Middleware.ExceptionFactory
 
         public object CreateResponse(Exception exception)
         {
-            return new
+            return new ErrorResponse
             {
-                Message = "An unexpected error occurred.",
-                Details = exception.Message
+                Error = "An unexpected error occurred.",
             };
         }
     }

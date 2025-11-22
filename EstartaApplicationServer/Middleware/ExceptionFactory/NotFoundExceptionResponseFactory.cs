@@ -14,9 +14,9 @@ namespace EstartaApplicationServer.Middleware
         public object CreateResponse(Exception exception)
         {
             var validationEx = exception as NotFoundException;
-            return new ResponseBase
+            return new ErrorResponse
             {
-                Message = validationEx?.Message ?? "Resource Not Found."
+                Error = validationEx?.Message ?? "Resource Not Found."
             };
         }
     }

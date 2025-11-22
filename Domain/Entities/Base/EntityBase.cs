@@ -51,4 +51,4 @@ namespace Domain.Entities.Abstraction
         }
     }
 }
-}
+

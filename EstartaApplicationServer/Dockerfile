@@ -27,3 +27,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Estarta Application.dll"]
+
+# Ensure the directory for the SQLite database exists and is writable
+RUN mkdir -p /app && chmod 777 /app
+ENTRYPOINT ["dotnet", "Estarta Application.dll"]

@@ -27,7 +27,7 @@ namespace Domain.Entities
 
         public Salary SetAmount(decimal amount)
         {
-            Guard.Against.CantBeNegative(amount, nameof(this.Amount)));
+            Guard.Against.CantBeNegative(amount, nameof(this.Amount));
 
             Amount = amount;
             return this;

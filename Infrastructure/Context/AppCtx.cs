@@ -13,7 +13,7 @@ namespace Infrastructure.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Salary> Salaries { get; set; }
 
-        public AppCtx(DbContextOptions opt) : base(opt)
+        public AppCtx(DbContextOptions<AppCtx> opt) : base(opt)
         {
             
         }

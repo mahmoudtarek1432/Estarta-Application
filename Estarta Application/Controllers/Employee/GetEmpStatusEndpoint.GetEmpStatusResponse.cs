@@ -1,6 +1,7 @@
 ﻿namespace Estarta_Application.Controllers.Employee
 {
-    public record struct GetEmpStatusResponse
+    public record class GetEmpStatusResponse : baseResponse
 	{
+
     }
 }

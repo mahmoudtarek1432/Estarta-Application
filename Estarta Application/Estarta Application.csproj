@@ -9,23 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\Employee\GetEmpStatusEndpoint.GetEmpStatusRequest.cs" />
-    <Compile Remove="Controllers\Employee\GetEmpStatusEndpoint.GetEmpStatusResponse.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Controllers\Employee\GetEmpStatusEndpoint.GetEmpStatusRequest.cs" />
-    <None Include="Controllers\Employee\GetEmpStatusEndpoint.GetEmpStatusResponse.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Ardalis.ApiEndpoints" Version="4.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
+    <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
 
 </Project>

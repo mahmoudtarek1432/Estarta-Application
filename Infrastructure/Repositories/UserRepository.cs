@@ -19,11 +19,11 @@ namespace Infrastructure.Repositories
             _ctx = ctx;
         }
 
-        public User? GetUserByNationNumber(string NationalNumber)
+        public async Task<User?> GetUserByNationNumber(string NationalNumber)
         {
-            return _ctx.Users.Where(e => e.UserCivilInfo.NationalNumber == NationalNumber)
+            return await _ctx.Users.Where(e => e.UserCivilInfo.NationalNumber == NationalNumber)
                              .Include(e => e.Salaries)
-                             .FirstOrDefault();
+                             .FirstOrDefaultAsync();
         }
     }
 }

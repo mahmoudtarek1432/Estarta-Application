@@ -15,17 +15,17 @@ namespace Application.Service
             _userRepository= userRepository;
         }
 
-        public bool IsEmployeeFeasible(string NationalNumber)
+        public async Task<bool> IsEmployeeFeasible(string NationalNumber)
         {
-            var user = _userRepository.GetUserByNationNumber(NationalNumber);
+            var user = await _userRepository.GetUserByNationNumber(NationalNumber);
             if (user == null)
                 throw new Exception("User not found");
             return user.IsEmployeeFeasibleFromSalaryCalculation();
         }
 
-        public EmployeeStatusDto GetEmployeeStatus(string NationalNumber)
+        public async Task<EmployeeStatusDto> GetEmployeeStatus(string NationalNumber)
         {
-            var user = _userRepository.GetUserByNationNumber(NationalNumber);
+            var user = await _userRepository.GetUserByNationNumber(NationalNumber);
             if (user == null)
                 throw new Exception("User not found");
             if (!user.IsEmployeeFeasibleFromSalaryCalculation())

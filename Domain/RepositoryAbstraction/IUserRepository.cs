@@ -4,6 +4,6 @@ namespace Infrastructure.Repositories
 {
     public interface IUserRepository
     {
-        public User? GetUserByNationNumber(string NationalNumber);
+        public Task<User?> GetUserByNationNumber(string NationalNumber);
     }
 }

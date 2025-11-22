@@ -1,10 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Estarta_Application.Model.Base;
+using Application.DTOs;
+using Application.Service.Base;
 
 namespace Estarta_Application.Controllers.Employee
 {
     [Route("api/[controller]")]
-    public class GetEmpStatusEndpoint : Ardalis.ApiEndpoints.EndpointBaseAsync.WithRequest<>.WithResult<>
+    public class GetEmpStatusEndpoint : Ardalis.ApiEndpoints.EndpointBaseAsync.WithRequest<GetEmpStatusEndpointRequest>.WithResult<ResponseBase<EmployeeStatusDto?>>
     {
-        
+        public IEmployeeService _empService;
+
+
+        public GetEmpStatusEndpoint(IEmployeeService empService)
+        {
+            _empService = empService;
+        }
+
+
+        public override async Task<ResponseBase<EmployeeStatusDto?>> HandleAsync(GetEmpStatusEndpointRequest request, CancellationToken cancellationToken = default)
+        {
+            var empStatus = await _empService.GetEmployeeStatus(request.NationalNumber);
+            var response = ResponseBase<EmployeeStatusDto>.Success(await _empService.GetEmployeeStatus(request.NationalNumber));
+
+            return response;
+        }
     }
+
+    public record struct GetEmpStatusEndpointRequest(string NationalNumber) { }
 }

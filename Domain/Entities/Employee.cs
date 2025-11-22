@@ -8,7 +8,7 @@ namespace Domain.Entities
     {
         public CivilInfo UserCivilInfo { get; set; }
         public AccountInfo UserAccountInfo { get; set; }
-        public bool IsActive { get; private set; } = false;
+        public bool IsActive { get; set; } = false;
 
         public List<Salary>? Salaries { get; set; }
 

@@ -28,5 +28,7 @@ namespace Estarta_Application.Controllers.Employee
         }
     }
 
-    public record struct GetEmpStatusEndpointRequest(string NationalNumber) { }
+    public record class GetEmpStatusEndpointRequest() {
+       public string NationalNumber { get; set; }
+    }
 }

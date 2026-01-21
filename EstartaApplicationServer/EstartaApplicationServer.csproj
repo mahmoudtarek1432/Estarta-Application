@@ -9,6 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="Model\**" />
+    <Content Remove="Controllers\**" />
+    <Content Remove="Model\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="Model\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Ardalis.ApiEndpoints" Version="4.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
@@ -23,10 +34,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\IOC\IOC.csproj" />
+    <ProjectReference Include="..\Employee.Api\Emp.Api.csproj" />
+    <ProjectReference Include="..\Employee\Employe.IOC\Emp.IOC.csproj" />
+    <ProjectReference Include="..\Employee\Employee.Infrastructure\Emp.Infrastructure.csproj" />
+    <ProjectReference Include="..\Employee\IOC\Employee.IOC.csproj" />
     <ProjectReference Include="..\Shared Kernal\Shared Kernal.csproj" />
   </ItemGroup>
+
 
 </Project>

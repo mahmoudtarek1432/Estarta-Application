@@ -1,8 +1,8 @@
 using System.Net;
 using System.ComponentModel.DataAnnotations;
 using Shared_Kernal.Guards;
-using Estarta_Application.Model.Base;
 using Estarta_Application.Middleware.ExceptionFactory.Abstraction;
+using Shared_Kernal.Model.Base;
 
 namespace Estarta_Application.Middleware.ExceptionFactory
 {

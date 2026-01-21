@@ -1,11 +1,13 @@
-using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
-using EstartaApplicationServer.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Estarta_Application.Middleware;
+using Emp.IOC.Application;
+using Emp.IOC.Infrastructure;
+using Emp.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppCtx>(options =>
@@ -13,8 +15,8 @@ builder.Services.AddDbContext<AppCtx>(options =>
 // Add services to the container.
 builder.Services.AddMemoryCache();
 
-IOC.Application.ApplicationDI.AddApplicationServices(builder.Services, builder.Configuration);
-IOC.Infrastructure.InfrastructureDI.AddInfrastructureServices(builder.Services);
+ApplicationDI.AddApplicationServices(builder.Services, builder.Configuration);
+InfrastructureDI.AddInfrastructureServices(builder.Services);
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

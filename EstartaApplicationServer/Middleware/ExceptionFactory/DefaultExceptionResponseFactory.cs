@@ -1,5 +1,5 @@
 using Estarta_Application.Middleware.ExceptionFactory.Abstraction;
-using Estarta_Application.Model.Base;
+using Shared_Kernal.Model.Base;
 using System.Net;
 
 namespace Estarta_Application.Middleware.ExceptionFactory

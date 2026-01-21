@@ -21,7 +21,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Employee\Application\Employee.Application.csproj" />
 	  <ProjectReference Include="..\Employee\Employee.Application\Emp.Application.csproj" />
 	  <ProjectReference Include="..\Shared Kernal\Shared Kernal.csproj" />
 	</ItemGroup>

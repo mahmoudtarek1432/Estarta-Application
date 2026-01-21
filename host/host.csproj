@@ -35,8 +35,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Employee.Api\Emp.Api.csproj" />
-    <ProjectReference Include="..\Employee\Employe.IOC\Emp.IOC.csproj" />
     <ProjectReference Include="..\Employee\Employee.Application\Emp.Application.csproj" />
+    <ProjectReference Include="..\IOC\IOC.csproj" />
     <ProjectReference Include="..\Shared Kernal\Shared Kernal.csproj" />
   </ItemGroup>
 

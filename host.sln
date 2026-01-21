@@ -5,6 +5,8 @@ VisualStudioVersion = 18.1.11304.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared Kernal", "Shared Kernal\Shared Kernal.csproj", "{8AF68EBA-5576-4F78-915B-7388BAAF7433}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "host", "EstartaApplicationServer\host.csproj", "{E4FD2415-D70B-0800-29CC-22791C32A3AB}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmployeeDomain", "EmployeeDomain", "{1DD75EE6-60D9-4BD5-B361-4EBC65848D90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp.Api", "Employee.Api\Emp.Api.csproj", "{ED6D0389-6CE6-4257-8CA3-C30B2B536327}"
@@ -19,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp.Domain", "Employee\Empl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp.Application", "Employee\Employee.Application\Emp.Application.csproj", "{9F7F369F-0620-4C2D-8181-2308A61BCB0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "host", "host\host.csproj", "{6ABE2E2A-727F-1212-4FEB-80BCCCBBE752}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +31,10 @@ Global
 		{8AF68EBA-5576-4F78-915B-7388BAAF7433}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AF68EBA-5576-4F78-915B-7388BAAF7433}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AF68EBA-5576-4F78-915B-7388BAAF7433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4FD2415-D70B-0800-29CC-22791C32A3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4FD2415-D70B-0800-29CC-22791C32A3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4FD2415-D70B-0800-29CC-22791C32A3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4FD2415-D70B-0800-29CC-22791C32A3AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED6D0389-6CE6-4257-8CA3-C30B2B536327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED6D0389-6CE6-4257-8CA3-C30B2B536327}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED6D0389-6CE6-4257-8CA3-C30B2B536327}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,10 +59,6 @@ Global
 		{9F7F369F-0620-4C2D-8181-2308A61BCB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F7F369F-0620-4C2D-8181-2308A61BCB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F7F369F-0620-4C2D-8181-2308A61BCB0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6ABE2E2A-727F-1212-4FEB-80BCCCBBE752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6ABE2E2A-727F-1212-4FEB-80BCCCBBE752}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6ABE2E2A-727F-1212-4FEB-80BCCCBBE752}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6ABE2E2A-727F-1212-4FEB-80BCCCBBE752}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

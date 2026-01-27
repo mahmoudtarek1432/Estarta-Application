@@ -45,6 +45,5 @@ namespace Application.Service
                 LastUpdated = DateTime.Now
             };
         }
-
     }
 }

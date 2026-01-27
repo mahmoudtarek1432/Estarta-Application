@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Estarta_Application.Middleware;
-using Emp.IOC.Application;
-using Emp.Infrastructure.Context;
-using Emp.IOC.Infrastructure;
+using IOC.Infrastructure;
+using IOC.Application;
+using Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppCtx>(options =>

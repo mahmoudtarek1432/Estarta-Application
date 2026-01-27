@@ -1,11 +1,11 @@
 ﻿using Emp.Domain.Entities;
 using Emp.Domain.RepositoryAbstraction;
-using Emp.Infrastructure.Context;
-using Emp.Infrastructure.Repositories.Base;
+using Infrastructure.Context;
+using Infrastructure.Repositories.Base;
 using Microsoft.Extensions.Caching.Memory;
 
 
-namespace Emp.Infrastructure.Repositories
+namespace Infrastructure.Repositories
 {
     public class EmployeeRepository : CachingRepositoryBase<Employee, int>, IEmployeeRepository
     {

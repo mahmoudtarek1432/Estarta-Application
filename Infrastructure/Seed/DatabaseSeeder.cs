@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-
-using Emp.Infrastructure.Context;
 using Emp.Domain.Entities;
+using Infrastructure.Context;
 
-namespace Emp.Infrastructure.Seed
+namespace Infrastructure.Seed
 {
     public static class DatabaseSeeder
     {

@@ -1,9 +1,9 @@
 using Emp.Domain.Entities;
 using Emp.Domain.RepositoryAbstraction;
-using Emp.Infrastructure.Context;
+using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Emp.Infrastructure.Repositories
+namespace Infrastructure.Repositories
 {
     public class UserRepository : RepositoryBase<User, int>, IUserRepository
     {

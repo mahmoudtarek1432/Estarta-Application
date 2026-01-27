@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shared_Kernal.Model.Base;
 
 
-namespace Estarta_Application.Controllers.Auth
+namespace Emp.Api
 {
     [Route("api/[controller]")]
     [ApiController]

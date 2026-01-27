@@ -5,7 +5,7 @@ using Emp.Application.Service.Abstraction;
 using Shared_Kernal.Model.Base;
 using Emp.Application.DTOs;
 
-namespace Estarta_Application.Controllers.Employee
+namespace Emp.Api
 {
     [Route("api/[controller]")]
     [Authorize]

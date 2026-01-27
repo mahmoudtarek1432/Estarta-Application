@@ -6,7 +6,7 @@ using Emp.Application.Service.Abstraction;
 using Emp.Application.Service;
 using Emp.Contract.ReadServices;
 
-namespace Emp.IOC.Application
+namespace IOC.Application
 {
     public static class ApplicationDI
     {

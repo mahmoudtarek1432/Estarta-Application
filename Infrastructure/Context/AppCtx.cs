@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Emp.Infrastructure.Seed;
 using Emp.Domain.Entities;
+using Infrastructure.Seed;
 
-namespace Emp.Infrastructure.Context
+namespace Infrastructure.Context
 {
     public class AppCtx : DbContext
     {

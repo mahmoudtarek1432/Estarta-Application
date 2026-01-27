@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Emp.Infrastructure.Repositories;
 using Emp.Domain.RepositoryAbstraction;
+using Infrastructure.Repositories;
 
-namespace Emp.IOC.Infrastructure
+namespace IOC.Infrastructure
 {
     public static class InfrastructureDI
     {

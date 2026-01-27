@@ -4,7 +4,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Shared_Kernal.Interfaces;
 
 
-namespace Emp.Infrastructure.Repositories.Base
+namespace Infrastructure.Repositories.Base
 {
     public class CachingRepositoryBase<T, R> : RepositoryBase<T,R>, IRepositoryBase<T, R>
         where T : class, IAggregateRoot

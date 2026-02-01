@@ -1,0 +1,6 @@
+@Admin_Host_HostAddress = http://localhost:5056
+
+GET {{Admin_Host_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

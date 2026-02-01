@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Service.Base
+namespace Application.Service.Abstraction
 {
     public interface IEmployeeService
     {

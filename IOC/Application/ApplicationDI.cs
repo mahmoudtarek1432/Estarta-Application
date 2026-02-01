@@ -1,6 +1,5 @@
 ﻿using Application.Service;
 using Application.Service.Abstraction;
-using Application.Service.Base;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System;

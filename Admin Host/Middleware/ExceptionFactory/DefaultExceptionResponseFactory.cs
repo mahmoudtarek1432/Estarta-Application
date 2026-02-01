@@ -1,8 +1,8 @@
-using Estarta_Application.Middleware.ExceptionFactory.Abstraction;
-using Estarta_Application.Model.Base;
+using Admin_Host.Middleware.ExceptionFactory.Abstraction;
+using Admin_Host.Model.Base;
 using System.Net;
 
-namespace Estarta_Application.Middleware.ExceptionFactory
+namespace Admin_Host.Middleware.ExceptionFactory
 {
     public class DefaultExceptionResponseFactory : IExceptionResponseFactory
     {

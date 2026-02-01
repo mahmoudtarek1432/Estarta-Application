@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace Estarta_Application.Middleware.ExceptionFactory.Abstraction
+namespace Admin_Host.Middleware.ExceptionFactory.Abstraction
 {
     public interface IExceptionResponseFactory
     {

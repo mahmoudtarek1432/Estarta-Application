@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.RepositoryAbstraction.Base;
 
-namespace Infrastructure.Repositories
+namespace Domain.RepositoryAbstraction
 {
     public interface IEmployeeRepository : IRepositoryBase<Employee, int>
     {

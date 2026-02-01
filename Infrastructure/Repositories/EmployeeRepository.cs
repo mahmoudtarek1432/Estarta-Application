@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
+using Domain.RepositoryAbstraction;
 using Infrastructure.Context;
-using Infrastructure.Repositories.RepositoryBase;
+using Infrastructure.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System;

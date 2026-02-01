@@ -1,4 +1,3 @@
-using Domain.Entities.Abstraction;
 using Domain.RepositoryAbstraction.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -7,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Repositories.RepositoryBase
+namespace Infrastructure.Repositories.Base
 {
     public class CachingRepositoryBase<T, R> : RepositoryBase<T,R>, IRepositoryBase<T, R>
         where T : class, IAggregateRoot

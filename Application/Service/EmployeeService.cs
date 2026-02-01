@@ -1,7 +1,7 @@
 ﻿using Application.DTOs;
-using Application.Service.Base;
+using Application.Service.Abstraction;
 using Domain.Entities;
-using Infrastructure.Repositories;
+using Domain.RepositoryAbstraction;
 using Shared_Kernal.Guards;
 
 namespace Application.Service

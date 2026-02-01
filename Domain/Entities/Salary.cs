@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Domain.Entities.Abstraction;
+using Domain.Entities.Base;
 using Shared_Kernal.Guards;
 using Shared_Kernal.Interfaces;
 using System;

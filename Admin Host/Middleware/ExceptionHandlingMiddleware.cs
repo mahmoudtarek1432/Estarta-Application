@@ -1,10 +1,10 @@
-using Estarta_Application.Middleware.ExceptionFactory;
+using Admin_Host.Middleware.ExceptionFactory;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Text.Json;
 
-namespace EstartaApplicationServer.Middleware
+namespace Admin_Host.Middleware
 {
     public class ExceptionHandlingMiddleware
     {

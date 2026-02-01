@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Estarta_Application.Model.Base;
 using Application.DTOs;
-using Application.Service.Base;
 using Microsoft.AspNetCore.Authorization;
+using Application.Service.Abstraction;
 
 namespace Estarta_Application.Controllers.Employee
 {

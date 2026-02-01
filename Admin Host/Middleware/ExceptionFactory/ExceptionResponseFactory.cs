@@ -1,9 +1,8 @@
-using Estarta_Application.Middleware.ExceptionFactory.Abstraction;
-using EstartaApplicationServer.Middleware;
+using Admin_Host.Middleware.ExceptionFactory.Abstraction;
 using Shared_Kernal.Guards;
 using System.ComponentModel.DataAnnotations;
 
-namespace Estarta_Application.Middleware.ExceptionFactory
+namespace Admin_Host.Middleware.ExceptionFactory
 {
     public static class ExceptionResponseFactory
     {

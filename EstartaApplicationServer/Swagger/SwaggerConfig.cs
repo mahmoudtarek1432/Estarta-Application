@@ -1,7 +1,7 @@
 // Optional: For advanced Swagger configuration, you can use this file.
 // For basic setup, you may leave this file empty or remove it.
 
-namespace EstartaApplicationServer.Swagger
+namespace Estarta_Application.Swagger
 {
     public static class SwaggerConfig
     {

@@ -1,11 +1,10 @@
 using System.Net;
 using System.ComponentModel.DataAnnotations;
 using Shared_Kernal.Guards;
-using Estarta_Application.Model.Base;
-using Estarta_Application.Middleware.ExceptionFactory;
-using Estarta_Application.Middleware.ExceptionFactory.Abstraction;
+using Admin_Host.Middleware.ExceptionFactory.Abstraction;
+using Admin_Host.Model.Base;
 
-namespace EstartaApplicationServer.Middleware
+namespace Admin_Host.Middleware.ExceptionFactory
 {
     public class NotFoundExceptionResponseFactory : IExceptionResponseFactory
     {

@@ -3,7 +3,7 @@ using Shared_Kernal.Guards;
 using Estarta_Application.Model.Base;
 using Estarta_Application.Middleware.ExceptionFactory.Abstraction;
 
-namespace EstartaApplicationServer.Middleware
+namespace Estarta_Application.Middleware.ExceptionFactory
 {
     public class UnprocesseableEntityExceptionResponseFactory : IExceptionResponseFactory
     {

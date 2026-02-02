@@ -26,10 +26,13 @@ namespace Application.Service
             var employee = await _userRepository.GetEmployeeByNationNumber(NationalNumber);
             if (employee == null)
                 throw new NotFoundException("National Number not found");
+
             if (employee.IsActive == null)
                 throw new NotAcceptableException("Employee is not active");
+
             if (!employee.IsEmployeeFeasibleFromSalaryCalculation())
                 throw new UnProcessableEntityException("INSUFFICIENT_DATA");
+
             var highestSalary = employee.Salaries.Max(e => e.SalaryCalculations());
             var averageSalary = employee.AverageSalary();
             var status = employee.GetEmployeeSalaryStatus();

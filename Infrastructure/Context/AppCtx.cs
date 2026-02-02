@@ -18,7 +18,6 @@ namespace Infrastructure.Context
 
         public AppCtx(DbContextOptions<AppCtx> opt) : base(opt)
         {
-            
         }
 
         public async Task SeedDatabaseAsync()

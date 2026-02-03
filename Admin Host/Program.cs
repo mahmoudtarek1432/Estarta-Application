@@ -34,7 +34,7 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(jwtSection["Secret"])
         ),
-        ValidateIssuer = false,
+        ValidateIssuer = true,
         ValidateAudience = false,
         ValidateLifetime = true,
         ClockSkew = TimeSpan.FromMinutes(5)

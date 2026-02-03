@@ -36,7 +36,7 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(jwtSection["Secret"])
         ),
-        ValidateIssuer = false,
+        ValidateIssuer = true,
         ValidateAudience = false,
         ValidateLifetime = true,
         ClockSkew = TimeSpan.FromMinutes(5)
@@ -70,6 +70,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppCtx>();
+    var x = db.Database.EnsureCreated();
     db.Database.Migrate();
 }
 

@@ -3,7 +3,7 @@ using Domain.RepositoryAbstraction.Base;
 
 namespace Domain.RepositoryAbstraction
 {
-    public interface IEmployeeRepository : IRepositoryBase<Employee, int>
+    public interface IEmployeeRepository : IRepository<Employee>
     {
         public Task<Employee?> GetEmployeeByNationNumber(string NationalNumber);
     }

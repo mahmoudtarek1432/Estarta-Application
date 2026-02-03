@@ -1,12 +1,10 @@
-﻿using Shared_Kernal.Interfaces;
+﻿using Ardalis.Specification;
+using Shared_Kernal.Interfaces;
 
 namespace Domain.RepositoryAbstraction.Base
 {
-    public interface IRepositoryBase<T, R> where T : class, IAggregateRoot
+    public interface IRepository<T> : IRepositoryBase<T> where T : class, IAggregateRoot
     {
 
-        public Task<IEnumerable<T>> GetAll(params string[] includes);
-
-        public Task<T?> GetById<K>(K id);
     }
 }

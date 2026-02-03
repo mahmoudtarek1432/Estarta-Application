@@ -11,7 +11,6 @@ namespace Infrastructure.Context
 {
     public class AppCtx : DbContext
     {
-        public DbSet<Employee> Employee { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }

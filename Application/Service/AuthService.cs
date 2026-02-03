@@ -1,11 +1,14 @@
 using Application.DTOs;
 using Application.Service.Abstraction;
+using Application.Validations;
 using Domain.Entities;
 using Domain.RepositoryAbstraction;
+using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Shared_Kernal.Guards;
 using Shared_Kernal.Security;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -30,6 +33,12 @@ namespace Application.Service
 
         public async Task<AuthResponseDto> LoginAsync(LoginRequestDto request)
         {
+            var validation = new LoginValidation();
+            var validationResponse = validation.Validate(request);
+
+            if (validationResponse.IsValid is false)
+                throw new BusinessLogicException(validationResponse.Errors.FirstOrDefault().ErrorMessage);
+            
             var user = await _ctx.GetByUsernameAsync(request.Email);
             if (user == null)
                 throw new Exception("Invalid credentials");

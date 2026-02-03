@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class UserRepository : RepositoryBase<User, int>, IUserRepository
+    public class UserRepository : EFRepositoryBase<User>, IUserRepository
     {
         private readonly AppCtx _ctx;
 

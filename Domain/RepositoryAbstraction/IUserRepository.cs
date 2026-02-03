@@ -1,8 +1,9 @@
 using Domain.Entities;
+using Domain.RepositoryAbstraction.Base;
 
 namespace Domain.RepositoryAbstraction
 {
-    public interface IUserRepository : Base.IRepositoryBase<User, int>
+    public interface IUserRepository : IRepository<User>
     {
         Task<User?> GetByUsernameAsync(string username);
 

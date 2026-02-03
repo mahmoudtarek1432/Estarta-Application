@@ -2,6 +2,7 @@
 using Application.Service.Abstraction;
 using Domain.Entities;
 using Domain.RepositoryAbstraction;
+using Domain.Specifications.Employees;
 using Shared_Kernal.Guards;
 
 namespace Application.Service
@@ -19,6 +20,12 @@ namespace Application.Service
             if (employee == null)
                 throw new Exception("User not found");
             return employee.IsEmployeeFeasibleFromSalaryCalculation();
+        }
+
+        public async Task<Employee?> GetEmployeeByNationalNumber(string nationalNumber)
+        {
+            var spec = new GetEmployeeByNationalIdSpecification(nationalNumber);
+            return await _userRepository.FirstOrDefaultAsync(spec);
         }
 
         public async Task<EmployeeStatusDto> GetEmployeeStatus(string NationalNumber)

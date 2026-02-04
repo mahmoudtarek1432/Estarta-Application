@@ -9,7 +9,6 @@
             {
                 Data = data,
                 IsSuccess = true,
-                StatusCode = 200,
                 Message = "Success"
             };
         }
@@ -25,7 +24,6 @@
             return new ResponseBase()
             {
                 IsSuccess = true,
-                StatusCode = 200,
                 Message = "Success"
             };
         }

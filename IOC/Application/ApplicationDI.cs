@@ -16,12 +16,7 @@ namespace IOC.Application
     {
         public static void AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddScoped<IAuthService, AuthService>(provider =>
-            {
-                var userRepo = provider.GetRequiredService<IUserRepository>();
-                return new AuthService(userRepo, configuration);
-            });
+
         }
     }
 }

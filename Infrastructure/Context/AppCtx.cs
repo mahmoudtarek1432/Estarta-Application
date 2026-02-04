@@ -11,9 +11,7 @@ namespace Infrastructure.Context
 {
     public class AppCtx : DbContext
     {
-        public DbSet<Salary> Salaries { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Branch> Branches { get; set; }
 
         public AppCtx(DbContextOptions<AppCtx> opt) : base(opt)
         {
@@ -30,58 +28,56 @@ namespace Infrastructure.Context
             #region indexing
 
             //User
-            modelBuilder.Entity<Employee>().HasKey(x => x.Id);
-
-
-            modelBuilder.Entity<Employee>().HasMany(x => x.Salaries)
-                                       .WithOne(x => x.Employee)
-                                       .HasForeignKey(x => x.UserId)
-                                       ;
-           //Salary
-
-            modelBuilder.Entity<Salary>().HasKey(x => x.Id);
-
+            modelBuilder.Entity<Branch>().HasKey(x => x.Id);
+            modelBuilder.Entity<Branch>().HasKey(x => x.BranchIDInfo.Code);
 
 
             #endregion
 
             #region Value Object
-            modelBuilder.Entity<Employee>()
-                        .OwnsOne(e => e.UserCivilInfo,
+            modelBuilder.Entity<Branch>()
+                        .OwnsOne(e => e.BranchAddressInfo,
                                  opt =>
                                  {
-                                     opt.Property(x => x.NationalNumber).HasColumnName(nameof(CivilInfo.NationalNumber));
-                                     opt.HasIndex(x => x.NationalNumber);
+                                     opt.Property(x => x.Address).HasColumnName(nameof(BranchAddressInfo.Address));
+                                     opt.Property(x => x.District).HasColumnName(nameof(BranchAddressInfo.District));
+
                                  });
 
-            modelBuilder.Entity<Employee>()
-                        .OwnsOne(e => e.UserAccountInfo,
+            modelBuilder.Entity<Branch>()
+                        .OwnsOne(e => e.BranchContactInfo,
                                  opt =>
                                  {
-                                     opt.Property(x => x.UserName).HasColumnName(nameof(AccountInfo.UserName));
-                                     opt.Property(x => x.Email).HasColumnName(nameof(AccountInfo.Email));
-                                     opt.Property(x => x.PhoneNumber).HasColumnName(nameof(AccountInfo.PhoneNumber));
+                                     opt.Property(x => x.ManagerContact).HasColumnName(nameof(BranchContactInfo.ManagerContact));
+                                     opt.Property(x => x.ManagerName).HasColumnName(nameof(BranchContactInfo.ManagerName));
+                                     opt.Property(x => x.PhoneNumber).HasColumnName(nameof(BranchContactInfo.PhoneNumber));
                                  });
 
-            modelBuilder.Entity<Salary>()
-                        .OwnsOne(e => e.issueDate,
+
+            modelBuilder.Entity<Branch>()
+                        .OwnsOne(e => e.BranchIDInfo,
                                  opt =>
                                  {
-                                     opt.Property(x => x.Month).HasColumnName(nameof(IssueDate.Month));
-                                     opt.Property(x => x.Year).HasColumnName(nameof(IssueDate.Year));
+                                     opt.Property(x => x.Name).HasColumnName(nameof(BranchIdentificationInfo.Name));
+                                     opt.Property(x => x.Code).HasColumnName(nameof(BranchIdentificationInfo.Code));
+                                     opt.Property(x => x.Status).HasColumnName(nameof(BranchIdentificationInfo.Status));
+                                 });
+
+            modelBuilder.Entity<Branch>()
+                        .OwnsOne(e => e.BranchServiceRestrictions,
+                                 opt =>
+                                 {
+                                     opt.Property(x => x.DisableVouchers).HasColumnName(nameof(BranchServiceRestrictions.DisableVouchers));
+                                     opt.Property(x => x.DisableCollection).HasColumnName(nameof(BranchServiceRestrictions.DisableCollection));
+                                     opt.Property(x => x.DisableRefund).HasColumnName(nameof(BranchServiceRestrictions.DisableRefund));
+                                     opt.Property(x => x.DisablePartialRefund).HasColumnName(nameof(BranchServiceRestrictions.DisablePartialRefund));
                                  });
             #endregion
 
             #region Mapping
 
-            modelBuilder.Entity<Salary>().Ignore(e => e.SummerMonthList);
 
-            // Configure optional 1-1 relationship between User and Employee
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Employee)
-                .WithOne(e => e.User)
-                .HasForeignKey<Employee>(e => e.UserId)
-                .IsRequired(false);
+           
 
             #endregion
 

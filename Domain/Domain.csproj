@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Shared Kernal\Shared Kernal.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Specifications\" />
+  </ItemGroup>
+
 </Project>

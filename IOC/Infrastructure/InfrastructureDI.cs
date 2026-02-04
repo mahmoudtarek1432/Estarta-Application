@@ -8,8 +8,7 @@ namespace IOC.Infrastructure
     {
         public static void AddInfrastructureServices(this IServiceCollection services)
         {
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            
         }
     }
 }

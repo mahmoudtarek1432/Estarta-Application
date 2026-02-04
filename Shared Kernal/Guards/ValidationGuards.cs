@@ -27,6 +27,9 @@ namespace Shared_Kernal.Guards
 
             public static void ValidatePhone(string input, string ParamName)
             {
+                if (input == null)
+                    return;
+
                 if (!Regex.IsMatch(input, @"^(?:\+20|20|0)?1[0125][0-9]{8}"))
                 {
                     throw new ArgumentException("Should be a valid mobile!", ParamName);
@@ -35,6 +38,9 @@ namespace Shared_Kernal.Guards
 
             public static void NotAlphaNumeric(string input, string ParamName)
             {
+                if (input == null)
+                    return;
+
                 if (!Regex.IsMatch(input, @"^[a-zA-Z0-9]+$"))
                 {
                     throw new BusinessLogicException($"The Property {ParamName} Should be Alpha numeric.");
@@ -43,19 +49,23 @@ namespace Shared_Kernal.Guards
 
             public static void NotWithinRange(string input, int min, int max, string ParamName)
             {
+                if (input == null)
+                    return;
+
                 if (input.Length > max || input.Length < min)
                     throw new BusinessLogicException($"The Property {ParamName} Should Fall Withing Range ({min} ~ {max}).");
             }
 
-            public static void CantBeNegative(int value, string paramName)
+            public static void CantBeNegative(int input, string paramName)
             {
-                if (value < 0)
+
+                if (input < 0)
                     throw new BusinessLogicException($"The Property {paramName} can't be negative");
             }
 
-            public static void CantBeNegative(decimal value, string paramName)
+            public static void CantBeNegative(decimal input, string paramName)
             {
-                if (value < 0)
+                if (input < 0)
                     throw new BusinessLogicException($"The Property {paramName} can't be negative");
             }
         }

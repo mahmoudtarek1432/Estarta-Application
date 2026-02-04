@@ -13,9 +13,9 @@ namespace Estarta_Application.Middleware.ExceptionFactory
         public object CreateResponse(Exception exception)
         {
             var validationEx = exception as BusinessLogicException;
-            return new ErrorResponse
+            return new ResponseBase
             {
-                Error = validationEx?.Message ?? "Invalid input."
+                Message = validationEx?.Message ?? "Invalid input."
             };
         }
     }

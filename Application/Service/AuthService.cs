@@ -60,11 +60,12 @@ namespace Application.Service
      
         public async Task<AuthResponseDto> RegisterAsync(RegisterRequestDto request)
         {
-            // Example logic, replace with your own
             var exists = await _ctx.GetByUsernameAsync(request.UserName);
             if (exists != null)
                 throw new BusinessLogicException("User already registered");
+
             var user = new User(request.UserName, request.Password);
+
             var createdUser = await _ctx.CreateUserAsync(user);
             var token = GenerateJwtToken(createdUser);
 
@@ -85,7 +86,6 @@ namespace Application.Service
                 new Claim("userId", user.Id.ToString())
             };
 
-            // Ensure the secret is not null or empty and is of sufficient length
             var keyBytes = System.Text.Encoding.UTF8.GetBytes(_jwtSecret);
             var key = new SymmetricSecurityKey(keyBytes);
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

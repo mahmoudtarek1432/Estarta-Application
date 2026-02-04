@@ -9,13 +9,12 @@ namespace Domain.Entities.Base
 {
      public abstract class EntityBase <T> 
     {
-        public T Id { get; set; }
+        public T Id { get; protected set; }
         public DateTime CreatedAt { get; private set; }
         public Guid? CreatedBy { get; private set; }
         public DateTime ModifiedAt { get; private set; }
         public Guid? ModifiedBy { get; private set; }
 
-        public List<Event> DomainEvents = new(); //so far no data manipulation so no use for it
 
 
         public void SetCreatedBy(Guid? id)
@@ -38,16 +37,6 @@ namespace Domain.Entities.Base
 
             ModifiedAt = DateTime.Now;
             ModifiedBy = id;
-        }
-
-        public void AddDomainEvent(Event eventItem)
-        {
-            DomainEvents.Add(eventItem);
-        }
-
-        public void ClearDomainEvents()
-        {
-            DomainEvents.Clear();
         }
     }
 }

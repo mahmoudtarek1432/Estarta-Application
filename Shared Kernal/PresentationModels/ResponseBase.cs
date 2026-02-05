@@ -1,4 +1,6 @@
-﻿namespace Estarta_Application.Model.Base
+﻿using System.Net;
+
+namespace Admin_Host.Model.Base
 {
     public record class ResponseBase<T> : ResponseBase
     {
@@ -9,6 +11,7 @@
             {
                 Data = data,
                 IsSuccess = true,
+                StatusCode = 200,
                 Message = "Success"
             };
         }
@@ -24,8 +27,19 @@
             return new ResponseBase()
             {
                 IsSuccess = true,
+                StatusCode = (int)HttpStatusCode.NotFound,
                 Message = "Success"
             };
+        }
+
+        public static ResponseBase Error(string message)
+        {
+            return new ResponseBase()
+            {
+                IsSuccess = false,
+                StatusCode = (int) HttpStatusCode.NotFound,
+                Message = message
+            }
         }
     }
 }

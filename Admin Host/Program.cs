@@ -20,35 +20,35 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 // Add JWT authentication
-var jwtSection = builder.Configuration.GetSection("Jwt");
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(jwtSection["Secret"])
-        ),
-        ValidateIssuer = true,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ClockSkew = TimeSpan.FromMinutes(5)
-    };
-    options.Events = new JwtBearerEvents
-    {
-        OnAuthenticationFailed = context =>
-        {
-            Console.WriteLine("JWT Auth Failed: " + context.Exception.Message);
-            Console.WriteLine(context.Exception);
-            return Task.CompletedTask;
-        }
-    };
-});
+//var jwtSection = builder.Configuration.GetSection("Jwt");
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//})
+//.AddJwtBearer(options =>
+//{
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuerSigningKey = true,
+//        IssuerSigningKey = new SymmetricSecurityKey(
+//            Encoding.UTF8.GetBytes(jwtSection["Secret"])
+//        ),
+//        ValidateIssuer = true,
+//        ValidateAudience = false,
+//        ValidateLifetime = true,
+//        ClockSkew = TimeSpan.FromMinutes(5)
+//    };
+//    options.Events = new JwtBearerEvents
+//    {
+//        OnAuthenticationFailed = context =>
+//        {
+//            Console.WriteLine("JWT Auth Failed: " + context.Exception.Message);
+//            Console.WriteLine(context.Exception);
+//            return Task.CompletedTask;
+//        }
+//    };
+//});
 
 // Add Swagger services
 builder.Services.AddSwaggerGen(options =>

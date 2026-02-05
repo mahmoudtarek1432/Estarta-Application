@@ -25,22 +25,27 @@ namespace Infrastructure.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            #region indexing
+            #region Keys
 
             //User
             modelBuilder.Entity<Branch>().HasKey(x => x.Id);
-            modelBuilder.Entity<Branch>().HasKey(x => x.BranchIDInfo.Code);
-
 
             #endregion
 
             #region Value Object
+
+            modelBuilder.Entity<Branch>().Property(x => x.Id).HasMaxLength(100);
+
             modelBuilder.Entity<Branch>()
                         .OwnsOne(e => e.BranchAddressInfo,
                                  opt =>
                                  {
-                                     opt.Property(x => x.Address).HasColumnName(nameof(BranchAddressInfo.Address));
-                                     opt.Property(x => x.District).HasColumnName(nameof(BranchAddressInfo.District));
+                                     opt.Property(x => x.Address).HasColumnName(nameof(BranchAddressInfo.Address))
+                                                                 .HasMaxLength(50)
+                                                                 .IsRequired();
+
+                                     opt.Property(x => x.District).HasColumnName(nameof(BranchAddressInfo.District))
+                                                                  .HasMaxLength(50); 
 
                                  });
 
@@ -48,9 +53,16 @@ namespace Infrastructure.Context
                         .OwnsOne(e => e.BranchContactInfo,
                                  opt =>
                                  {
-                                     opt.Property(x => x.ManagerContact).HasColumnName(nameof(BranchContactInfo.ManagerContact));
-                                     opt.Property(x => x.ManagerName).HasColumnName(nameof(BranchContactInfo.ManagerName));
-                                     opt.Property(x => x.PhoneNumber).HasColumnName(nameof(BranchContactInfo.PhoneNumber));
+                                     opt.Property(x => x.ManagerContact).HasColumnName(nameof(BranchContactInfo.ManagerContact))
+                                                                        .HasMaxLength(50);
+
+                                     opt.Property(x => x.ManagerName).HasColumnName(nameof(BranchContactInfo.ManagerName))
+                                                                     .HasMaxLength(50);
+
+                                     opt.Property(x => x.PhoneNumber).HasColumnName(nameof(BranchContactInfo.PhoneNumber))
+                                                                     .HasMaxLength(50)
+                                                                     .IsRequired()
+;
                                  });
 
 
@@ -58,19 +70,36 @@ namespace Infrastructure.Context
                         .OwnsOne(e => e.BranchIDInfo,
                                  opt =>
                                  {
-                                     opt.Property(x => x.Name).HasColumnName(nameof(BranchIdentificationInfo.Name));
-                                     opt.Property(x => x.Code).HasColumnName(nameof(BranchIdentificationInfo.Code));
-                                     opt.Property(x => x.Status).HasColumnName(nameof(BranchIdentificationInfo.Status));
+                                     opt.Property(x => x.Name).HasColumnName(nameof(BranchIdentificationInfo.Name))
+                                                              .HasMaxLength(100)
+                                                              .IsRequired();
+
+                                     opt.Property(x => x.Code).HasColumnName(nameof(BranchIdentificationInfo.Code))
+                                                              .HasMaxLength(100)
+                                                              .IsRequired();
+
+
+                                     opt.Property(x => x.Status).HasColumnName(nameof(BranchIdentificationInfo.Status))
+                                                                .IsRequired();
+
+                                     opt.HasIndex(x => x.Code);
                                  });
 
             modelBuilder.Entity<Branch>()
                         .OwnsOne(e => e.BranchServiceRestrictions,
                                  opt =>
                                  {
-                                     opt.Property(x => x.DisableVouchers).HasColumnName(nameof(BranchServiceRestrictions.DisableVouchers));
-                                     opt.Property(x => x.DisableCollection).HasColumnName(nameof(BranchServiceRestrictions.DisableCollection));
-                                     opt.Property(x => x.DisableRefund).HasColumnName(nameof(BranchServiceRestrictions.DisableRefund));
-                                     opt.Property(x => x.DisablePartialRefund).HasColumnName(nameof(BranchServiceRestrictions.DisablePartialRefund));
+                                     opt.Property(x => x.DisableVouchers).HasColumnName(nameof(BranchServiceRestrictions.DisableVouchers))
+                                                                         .HasDefaultValue(false);
+
+                                     opt.Property(x => x.DisableCollection).HasColumnName(nameof(BranchServiceRestrictions.DisableCollection))
+                                                                           .HasDefaultValue(false);
+
+                                     opt.Property(x => x.DisableRefund).HasColumnName(nameof(BranchServiceRestrictions.DisableRefund))
+                                                                       .HasDefaultValue(false);
+
+                                     opt.Property(x => x.DisablePartialRefund).HasColumnName(nameof(BranchServiceRestrictions.DisablePartialRefund))
+                                                                              .HasDefaultValue(false);
                                  });
             #endregion
 

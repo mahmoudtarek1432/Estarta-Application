@@ -18,8 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Service\Abstraction\" />
+    <Folder Include="Validations\" />
   </ItemGroup>
 
 </Project>

@@ -15,15 +15,41 @@ namespace Domain.Entities
 
         public BranchServiceRestrictions(bool disableRefund, bool disablePartialRefund, bool disableCollection, bool disableVouchers)
         {
+            SetDisableRefund(disableRefund);
+
+            SetDisablePartialRefund(disablePartialRefund);
+
+            SetDisableCollection(disableCollection);
+
+            SetDisableVouchers(disableVouchers);
+        }
+
+        public void SetDisableRefund(bool disableRefund)
+        {
+            DisableRefund = disableRefund;
+        }
+
+        public void SetDisablePartialRefund(bool disablePartialRefund)
+        {
             DisablePartialRefund = disablePartialRefund;
 
-            DisableRefund = disableRefund;
+            DisabledRefundDisablesPartialRefund(DisableRefund, DisablePartialRefund);
+        }
 
+        public void SetDisableCollection(bool disableCollection)
+        {
+            DisableCollection = disableCollection;
+        }
+
+        public void SetDisableVouchers(bool disableVouchers)
+        {
+            DisableVouchers = disableVouchers;
+        }
+
+        private void DisabledRefundDisablesPartialRefund(bool disableRefund, bool disablePartialRefund)
+        {
             if (disableRefund is true && disablePartialRefund is false)
                 DisablePartialRefund = false;
-
-            DisableCollection = disableCollection;
-            DisableVouchers = disableVouchers;
         }
     }
 }

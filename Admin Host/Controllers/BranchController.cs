@@ -1,4 +1,5 @@
-﻿using Application.DTOs;
+﻿using Admin_Host.Model.Base;
+using Application.DTOs;
 using Application.Service.Abstraction;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;
@@ -18,16 +19,32 @@ namespace Admin_Host.Controllers
         }
 
         [HttpPost]
-        public async Task<Branch> createBranch(BranchCreateDto model) 
+        public async Task<ResponseBase<BranchCreateDto>> createBranch(BranchCreateDto model) 
         {
-            var entity = await _branchService.CreateBranch(model);
-            return entity;
+            var resModel = await _branchService.CreateBranch(model);
+            return ResponseBase<BranchCreateDto>.Success(resModel);
+        }
+
+        [HttpPatch]
+        public async Task<ResponseBase<BranchUpdateDto>> UpdateBranch(BranchUpdateDto model)
+        {
+            var resModel = await _branchService.UpdateBranch(model);
+            return ResponseBase<BranchUpdateDto>.Success(resModel);
         }
 
         [HttpGet("{id}")]
-        public async Task<BranchReadDto> GetBranch(string id)
+        public async Task<ResponseBase<BranchReadDto>> GetBranch(string id)
         {
-            return await _branchService.GetBranch(id);
+            var resModel = await _branchService.GetBranch(id);
+
+            return ResponseBase<BranchReadDto>.Success(resModel);
+        }
+
+        [HttpGet("merchant/{merchantId}")]
+        public async Task<ResponseBase<IEnumerable<BranchReadDto>>> GetMerchantBranches(string merchantId)
+        {
+            var resModel = await _branchService.GetMerchantBranches(merchantId);
+            return ResponseBase<IEnumerable<BranchReadDto>>.Success(resModel);
         }
     }
 }

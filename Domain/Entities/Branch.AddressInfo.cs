@@ -13,9 +13,19 @@ namespace Domain.Entities
 
         public BranchAddressInfo(string address, string district)
         {
+            SetAddress(address);
+
+            SetDistrict(district);
+        }
+
+        public void SetAddress(string address)
+        {
             Guard.Against.NullOrWhiteSpace(address, $"{nameof(Branch)} {nameof(Address)}");
             Address = address;
+        }
 
+        public void SetDistrict(string district)
+        {
             Guard.Against.NullOrWhiteSpace(district, $"{nameof(Branch)} {nameof(District)}");
             District = district;
         }

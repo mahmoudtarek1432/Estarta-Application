@@ -11,5 +11,9 @@ namespace Shared_Kernal.Guards
         public NotFoundException(string? message) : base(message)
         {
         }
+
+        public NotFoundException() : base("Requested resource was not found")
+        {
+        }
     }
 }

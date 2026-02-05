@@ -9,6 +9,7 @@ namespace Application.DTOs
 {
     public class BranchCreateDto : IPersistanceDto<Branch>
     {
+        public string BranchId { get; set; }
         public string MerchantId { get;  set; }
         public string Address { get;  set; }
         public string District { get;  set; }
@@ -30,11 +31,35 @@ namespace Application.DTOs
             var serviceRestrictions = new BranchServiceRestrictions(disableRefund: DisableRefund, disablePartialRefund: DisablePartialRefund, disableCollection: DisableCollection, disableVouchers: DisableVouchers);
             var addressInfo = new BranchAddressInfo(address: Address, district: District);
 
-            return new Branch(branchContact: contact,
+            var branch =  new Branch(branchContact: contact,
                                branchAddressInfo: addressInfo,
                                branchSerivces: serviceRestrictions,
                                branchIDInfo: identification,
                                merchantId: MerchantId);
+            branch.SetId(BranchId);
+
+            return branch;
+        }
+
+        public static BranchCreateDto fromEntity(Branch branch)
+        {
+            return new BranchCreateDto
+            {
+                BranchId = branch.Id,
+                MerchantId = branch.MerchantId,
+                Address = branch.BranchAddressInfo.Address,
+                District = branch.BranchAddressInfo.District,
+                BranchCode = branch.BranchIDInfo.Code,
+                BranchName = branch.BranchIDInfo.Name,
+                PhoneNumber = branch.BranchContactInfo.PhoneNumber,
+                ManagerName = branch.BranchContactInfo.ManagerName,
+                ManagerContact = branch.BranchContactInfo.ManagerContact,
+                Status = branch.BranchIDInfo.Status,
+                DisableCollection = branch.BranchServiceRestrictions.DisableCollection,
+                DisableRefund = branch.BranchServiceRestrictions.DisableRefund,
+                DisablePartialRefund = branch.BranchServiceRestrictions.DisablePartialRefund,
+                DisableVouchers = branch.BranchServiceRestrictions.DisableVouchers
+            };
         }
     }
 }

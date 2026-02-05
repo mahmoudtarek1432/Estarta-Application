@@ -2,6 +2,7 @@
 using Domain.RepositoryAbstraction;
 using Domain.RepositoryAbstraction.Base;
 using Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,10 @@ namespace Infrastructure.Repositories
             
         }
 
-
+        public async Task<IEnumerable<Branch>> GetBranchesByMerchantId(string merchantId)
+        {
+            return await _ctx.Branches.Where(e => e.MerchantId == merchantId)
+                                      .ToListAsync();
+        }
     }
 }

@@ -29,6 +29,10 @@ namespace Domain.Entities
 
         public void SetMerchantId(string merchantId)
         {
+            //branches shouldn't change merchants
+            if (MerchantId != null)
+                throw new BusinessLogicException("The branch is already assigned to a merchant");
+
             Guard.Against.NullOrWhiteSpace(merchantId, nameof(merchantId));
             MerchantId = merchantId;
         }

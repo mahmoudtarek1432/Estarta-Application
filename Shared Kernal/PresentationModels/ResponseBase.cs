@@ -37,9 +37,9 @@ namespace Admin_Host.Model.Base
             return new ResponseBase()
             {
                 IsSuccess = false,
-                StatusCode = (int) HttpStatusCode.NotFound,
+                StatusCode = (int)HttpStatusCode.NotFound,
                 Message = message
-            }
+            };
         }
     }
 }

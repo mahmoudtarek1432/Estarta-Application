@@ -1,9 +1,7 @@
 ﻿using Domain.Constants;
 using Shared_Kernal.Guards;
 using Shared_Kernal.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Xml.Linq;
 
 namespace Domain.Entities
 {
@@ -15,13 +13,28 @@ namespace Domain.Entities
 
         public BranchIdentificationInfo(string code, string name, BranchStatus status)
         {
-            Guard.Against.NotAlphaNumeric(code, $"{nameof(Branch)} {nameof(Code)}");
-            Code = code;
+            setCode(code);
 
+            setName(name);
+
+            SetStatus(status);
+        }
+
+        public void setName(string name)
+        {
             Guard.Against.NullOrWhiteSpace(name, $"{nameof(Branch)} {nameof(Name)}");
             Guard.Against.NotWithinRange(name, 0, 100, $"{nameof(Branch)} {nameof(Name)}");
-            Name = name;
+            Name = name.Trim();
+        }
 
+        public void setCode(string code)
+        {
+            Guard.Against.NotAlphaNumeric(code, $"{nameof(Branch)} {nameof(Code)}");
+            Code = code.Trim();
+        }
+
+        public void SetStatus(BranchStatus status)
+        {
             Status = status;
         }
     }

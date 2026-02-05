@@ -32,7 +32,7 @@ namespace Shared_Kernal.Guards
 
                 if (!Regex.IsMatch(input, @"^(?:\+20|20|0)?1[0125][0-9]{8}"))
                 {
-                    throw new ArgumentException("Should be a valid mobile!", ParamName);
+                    throw new BusinessLogicException("Phone Number Should be a in a valid format!");
                 }
             }
 

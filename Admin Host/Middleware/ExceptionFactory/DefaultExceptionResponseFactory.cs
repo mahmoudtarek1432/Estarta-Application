@@ -10,9 +10,9 @@ namespace Admin_Host.Middleware.ExceptionFactory
 
         public object CreateResponse(Exception exception)
         {
-            return new ErrorResponse
+            return new ResponseBase
             {
-                Error = "An unexpected error occurred.",
+                Message = "An unexpected error occurred.",
             };
         }
     }

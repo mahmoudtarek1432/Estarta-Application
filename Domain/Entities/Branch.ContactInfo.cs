@@ -1,8 +1,5 @@
 ﻿using Shared_Kernal.Guards;
 using Shared_Kernal.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Entities
 {
@@ -14,11 +11,27 @@ namespace Domain.Entities
 
         public BranchContactInfo(string managerName, string managerContact, string phoneNumber)
         {
+            SetPhoneNumber(phoneNumber);
+
+            SetManagerName(managerName);
+
+            SetManagerContact(managerContact);
+        }
+
+        public void SetPhoneNumber(string phoneNumber)
+        {
             Guard.Against.NullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
             Guard.Against.ValidatePhone(phoneNumber, nameof(phoneNumber));
             PhoneNumber = phoneNumber;
+        }
 
+        public void SetManagerName(string managerName)
+        {
             ManagerName = managerName;
+        }
+
+        public void SetManagerContact(string managerContact)
+        {
             ManagerContact = managerContact;
         }
     }

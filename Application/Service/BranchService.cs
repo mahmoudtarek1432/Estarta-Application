@@ -3,8 +3,12 @@ using Application.Service.Abstraction;
 using Domain.Entities;
 using Domain.RepositoryAbstraction;
 using Domain.RepositoryAbstraction.Base;
+using Domain.Specifications;
+using Shared_Kernal.Guards;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 
 namespace Application.Service
@@ -18,23 +22,70 @@ namespace Application.Service
             _branchRepo = branchRepo;
         }
 
+        public async Task<BranchReadDto> GetBranch(string id)
+        {
+            var branch = await _branchRepo.GetByIdAsync(id);
 
-        public async Task<Branch> CreateBranch(BranchCreateDto model)
+            if (branch == null)
+                throw new NotFoundException();
+
+            return BranchReadDto.fromEntity(branch);
+        }
+
+        public async Task<IEnumerable<BranchReadDto>> GetMerchantBranches(string merchantId)
+        {
+            var branch = await _branchRepo.GetBranchesByMerchantId(merchantId);
+
+            return branch.Select(BranchReadDto.fromEntity);
+        }
+
+
+        public async Task<BranchCreateDto> CreateBranch(BranchCreateDto model)
         {
             var branch = model.toEntity();
 
-            branch.SetId("BR01");
+            var nameExists = await _branchRepo.AnyAsync(new BranchNameLookupSpecification(model.BranchName));
+            if (nameExists)
+                throw new BusinessLogicException("The Branch Name Is Not Unique");
 
             var entity = await _branchRepo.AddAsync(branch);
 
-            return entity;
+            return BranchCreateDto.fromEntity(entity);
         }
 
-        public async Task<BranchReadDto> GetBranch(string id)
+        public async Task<BranchUpdateDto> UpdateBranch(BranchUpdateDto model)
         {
-            var branch = await _branchRepo.GetByIdAsync<string>(id);
+            var branch = await _branchRepo.GetByIdAsync(model.BranchId);
 
-            return BranchReadDto.fromEntity(branch);
+            if(branch == null)
+                throw new NotFoundException();
+
+            var nameExists = await _branchRepo.AnyAsync(new BranchNameLookupSpecification(model.BranchName, model.BranchId));
+
+            if (nameExists)
+                throw new BusinessLogicException("The Branch Name Should be Unique");
+
+            branch.BranchIDInfo = new BranchIdentificationInfo(code: model.BranchCode, 
+                                                              name: model.BranchName,
+                                                              status: model.Status);
+
+            branch.BranchContactInfo = new BranchContactInfo(managerName: model.ManagerName, 
+                                                managerContact: model.ManagerContact, 
+                                                phoneNumber: model.PhoneNumber);
+
+            branch.BranchServiceRestrictions = new BranchServiceRestrictions(disableRefund: model.DisableRefund, 
+                                                                    disablePartialRefund: model.DisablePartialRefund, 
+                                                                    disableCollection: model.DisableCollection, 
+                                                                    disableVouchers: model.DisableVouchers);
+
+            branch.BranchAddressInfo = new BranchAddressInfo(address: model.Address, district: model.District);
+
+
+            var entity = await _branchRepo.UpdateAsync(branch);
+
+            var updatedBranch = await _branchRepo.GetByIdAsync(model.BranchId);
+
+            return BranchUpdateDto.fromEntity(updatedBranch);
         }
     }
 }

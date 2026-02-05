@@ -9,6 +9,7 @@ namespace Application.DTOs
 {
     public class BranchReadDto
     {
+        public string BranchId { get; set; }
         public string MerchantId { get;  set; }
         public string Address { get;  set; }
         public string District { get;  set; }
@@ -27,6 +28,7 @@ namespace Application.DTOs
         {
             return new BranchReadDto
             {
+                BranchId = branch.Id,
                 MerchantId = branch.MerchantId,
                 Address = branch.BranchAddressInfo.Address,
                 District = branch.BranchAddressInfo.District,

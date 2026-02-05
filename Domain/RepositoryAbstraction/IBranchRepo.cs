@@ -8,5 +8,6 @@ namespace Domain.RepositoryAbstraction
 {
     public interface IBranchRepo : IRepository<Branch>
     {
+        Task<IEnumerable<Branch>> GetBranchesByMerchantId(string merchantId);
     }
 }

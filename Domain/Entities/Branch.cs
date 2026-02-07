@@ -15,6 +15,8 @@ namespace Domain.Entities
         public BranchContactInfo BranchContactInfo { get; set; }
         public BranchServiceRestrictions BranchServiceRestrictions { get; set; }
         
+        public Guid CityId { get; set; }
+        public City City { get; set; }
 
         public Branch() { }
 

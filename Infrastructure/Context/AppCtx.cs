@@ -104,6 +104,12 @@ namespace Infrastructure.Context
                                      opt.Property(x => x.DisablePartialRefund).HasColumnName(nameof(BranchServiceRestrictions.DisablePartialRefund))
                                                                               .HasDefaultValue(false);
                                  });
+
+            modelBuilder.Entity<Branch>()
+                        .HasOne(e => e.City)
+                        .WithMany(e => e.Branches)
+                        .HasForeignKey(e => e.CityId)
+                        .IsRequired();
             #endregion
 
             #region City

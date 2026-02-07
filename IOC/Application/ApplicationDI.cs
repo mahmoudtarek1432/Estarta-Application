@@ -18,6 +18,7 @@ namespace IOC.Application
         public static void AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IBranchService, BranchService>();
+            services.AddScoped<ICityService, CityService>();
 
         }
     }

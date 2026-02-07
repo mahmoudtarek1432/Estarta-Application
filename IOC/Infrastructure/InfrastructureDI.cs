@@ -9,6 +9,7 @@ namespace IOC.Infrastructure
         public static void AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<IBranchRepo,BranchRepo>();
+            services.AddScoped<ICityRepo,CityRepo>();
 
         }
     }

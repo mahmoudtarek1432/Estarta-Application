@@ -12,6 +12,7 @@ namespace Infrastructure.Context
     public class AppCtx : DbContext
     {
         public DbSet<Branch> Branches { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         public AppCtx(DbContextOptions<AppCtx> opt) : base(opt)
         {
@@ -30,9 +31,11 @@ namespace Infrastructure.Context
             //User
             modelBuilder.Entity<Branch>().HasKey(x => x.Id);
 
+            modelBuilder.Entity<City>().HasKey(x => x.Id);
+
             #endregion
 
-            #region Value Object
+            #region Branch
 
             modelBuilder.Entity<Branch>().Property(x => x.Id).HasMaxLength(100);
 
@@ -103,10 +106,18 @@ namespace Infrastructure.Context
                                  });
             #endregion
 
+            #region City
+
+            modelBuilder.Entity<City>().Property(x => x.NameAr).HasMaxLength(50);
+            modelBuilder.Entity<City>().Property(x => x.NameEn).HasMaxLength(50);
+
+            
+            #endregion
+
             #region Mapping
 
 
-           
+
 
             #endregion
 

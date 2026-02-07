@@ -1,4 +1,4 @@
-﻿using Application.DTOs;
+﻿using Application.DTOs.BranchDtos;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;

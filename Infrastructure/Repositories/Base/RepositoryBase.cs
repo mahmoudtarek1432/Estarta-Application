@@ -16,9 +16,9 @@ public abstract class EFRepositoryBase<T> : RepositoryBase<T> , IRepository<T>
     protected EFRepositoryBase(AppCtx ctx):base(ctx)
     {
         _ctx = ctx;
-        // Configure a simple retry policy: 3 retries, exponential backoff
+
         _retryPolicy = Policy
-            .Handle<Exception>() // You can specify more granular exceptions if needed
+            .Handle<Exception>() 
             .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
     }
 }

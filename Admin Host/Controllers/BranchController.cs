@@ -1,5 +1,5 @@
 ﻿using Admin_Host.Model.Base;
-using Application.DTOs;
+using Application.DTOs.BranchDtos;
 using Application.Service.Abstraction;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;

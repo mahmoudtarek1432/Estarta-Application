@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.DTOs
+namespace Application.DTOs.BranchDtos
 {
-    public class BranchCreateDto : IPersistanceDto<Branch>
+    public class BranchReadDto : 
     {
         public string BranchId { get; set; }
         public string MerchantId { get;  set; }
@@ -24,26 +24,9 @@ namespace Application.DTOs
         public bool DisableVouchers { get;  set; }
         public BranchStatus Status { get;  set; }
 
-        public Branch toEntity()
+        public static BranchReadDto fromEntity(Branch branch)
         {
-            var identification = new BranchIdentificationInfo(code: BranchCode, name: BranchName, status: Status);
-            var contact = new BranchContactInfo(managerName: ManagerName, managerContact: ManagerContact, phoneNumber: PhoneNumber);
-            var serviceRestrictions = new BranchServiceRestrictions(disableRefund: DisableRefund, disablePartialRefund: DisablePartialRefund, disableCollection: DisableCollection, disableVouchers: DisableVouchers);
-            var addressInfo = new BranchAddressInfo(address: Address, district: District);
-
-            var branch =  new Branch(branchContact: contact,
-                               branchAddressInfo: addressInfo,
-                               branchSerivces: serviceRestrictions,
-                               branchIDInfo: identification,
-                               merchantId: MerchantId);
-            branch.SetId(BranchId);
-
-            return branch;
-        }
-
-        public static BranchCreateDto fromEntity(Branch branch)
-        {
-            return new BranchCreateDto
+            return new BranchReadDto
             {
                 BranchId = branch.Id,
                 MerchantId = branch.MerchantId,

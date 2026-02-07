@@ -1,4 +1,4 @@
-﻿using Application.DTOs;
+﻿using Application.DTOs.BranchDtos;
 using Application.Service.Abstraction;
 using Domain.Entities;
 using Domain.RepositoryAbstraction;
@@ -66,17 +66,17 @@ namespace Application.Service
                 throw new BusinessLogicException("The Branch Name Should be Unique");
 
             branch.BranchIDInfo = new BranchIdentificationInfo(code: model.BranchCode, 
-                                                              name: model.BranchName,
-                                                              status: model.Status);
+                                                               name: model.BranchName,
+                                                               status: model.Status);
 
             branch.BranchContactInfo = new BranchContactInfo(managerName: model.ManagerName, 
-                                                managerContact: model.ManagerContact, 
-                                                phoneNumber: model.PhoneNumber);
+                                                             managerContact: model.ManagerContact, 
+                                                             phoneNumber: model.PhoneNumber);
 
             branch.BranchServiceRestrictions = new BranchServiceRestrictions(disableRefund: model.DisableRefund, 
-                                                                    disablePartialRefund: model.DisablePartialRefund, 
-                                                                    disableCollection: model.DisableCollection, 
-                                                                    disableVouchers: model.DisableVouchers);
+                                                                             disablePartialRefund: model.DisablePartialRefund, 
+                                                                             disableCollection: model.DisableCollection, 
+                                                                             disableVouchers: model.DisableVouchers);
 
             branch.BranchAddressInfo = new BranchAddressInfo(address: model.Address, district: model.District);
 

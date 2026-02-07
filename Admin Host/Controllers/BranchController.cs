@@ -19,17 +19,17 @@ namespace Admin_Host.Controllers
         }
 
         [HttpPost]
-        public async Task<ResponseBase<BranchCreateDto>> createBranch(BranchCreateDto model) 
+        public async Task<ResponseBase<BranchReadDto>> createBranch(BranchCreateDto model) 
         {
             var resModel = await _branchService.CreateBranch(model);
-            return ResponseBase<BranchCreateDto>.Success(resModel);
+            return ResponseBase<BranchReadDto>.Success(resModel);
         }
 
         [HttpPatch]
-        public async Task<ResponseBase<BranchUpdateDto>> UpdateBranch(BranchUpdateDto model)
+        public async Task<ResponseBase<BranchReadDto>> UpdateBranch(BranchUpdateDto model)
         {
             var resModel = await _branchService.UpdateBranch(model);
-            return ResponseBase<BranchUpdateDto>.Success(resModel);
+            return ResponseBase<BranchReadDto>.Success(resModel);
         }
 
         [HttpGet("{id}")]

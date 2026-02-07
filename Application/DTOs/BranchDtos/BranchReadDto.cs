@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Abstraction;
+using Application.DTOs.CityDtos;
 using Domain.Constants;
 using Domain.Entities;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Application.DTOs.BranchDtos
 {
-    public class BranchReadDto : 
+    public class BranchReadDto : IInquiryDto<Branch,BranchReadDto>
     {
         public string BranchId { get; set; }
         public string MerchantId { get;  set; }
@@ -24,7 +25,9 @@ namespace Application.DTOs.BranchDtos
         public bool DisableVouchers { get;  set; }
         public BranchStatus Status { get;  set; }
 
-        public static BranchReadDto fromEntity(Branch branch)
+        public CityReadDto? BranchCity { get; set; }
+
+        public static BranchReadDto FromEntity(Branch branch)
         {
             return new BranchReadDto
             {
@@ -41,7 +44,8 @@ namespace Application.DTOs.BranchDtos
                 DisableCollection = branch.BranchServiceRestrictions.DisableCollection,
                 DisableRefund = branch.BranchServiceRestrictions.DisableRefund,
                 DisablePartialRefund = branch.BranchServiceRestrictions.DisablePartialRefund,
-                DisableVouchers = branch.BranchServiceRestrictions.DisableVouchers
+                DisableVouchers = branch.BranchServiceRestrictions.DisableVouchers,
+                BranchCity = branch.City != null ? CityReadDto.FromEntity(branch.City) : null
             };
         }
     }

@@ -8,9 +8,9 @@ namespace Application.Service.Abstraction
 {
     public interface IBranchService
     {
-        Task<BranchCreateDto> CreateBranch(BranchCreateDto model);
+        Task<BranchReadDto> CreateBranch(BranchCreateDto model);
         Task<BranchReadDto> GetBranch(string id);
         Task<IEnumerable<BranchReadDto>> GetMerchantBranches(string merchantId);
-        Task<BranchUpdateDto> UpdateBranch(BranchUpdateDto model);
+        Task<BranchReadDto> UpdateBranch(BranchUpdateDto model);
     }
 }

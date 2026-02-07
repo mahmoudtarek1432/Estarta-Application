@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Infrastructure.Repositories
 {
-    public class CityRepo : EFRepositoryBase<Branch>, ICityRepo
+    public class CityRepo : EFRepositoryBase<City>, ICityRepo
     {
         public CityRepo(AppCtx ctx) : base(ctx)
         {

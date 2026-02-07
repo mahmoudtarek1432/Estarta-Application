@@ -29,18 +29,18 @@ namespace Application.Service
             if (branch == null)
                 throw new NotFoundException();
 
-            return BranchReadDto.fromEntity(branch);
+            return BranchReadDto.FromEntity(branch);
         }
 
         public async Task<IEnumerable<BranchReadDto>> GetMerchantBranches(string merchantId)
         {
             var branch = await _branchRepo.GetBranchesByMerchantId(merchantId);
 
-            return branch.Select(BranchReadDto.fromEntity);
+            return branch.Select(BranchReadDto.FromEntity);
         }
 
 
-        public async Task<BranchCreateDto> CreateBranch(BranchCreateDto model)
+        public async Task<BranchReadDto> CreateBranch(BranchCreateDto model)
         {
             var branch = model.toEntity();
 
@@ -50,10 +50,10 @@ namespace Application.Service
 
             var entity = await _branchRepo.AddAsync(branch);
 
-            return BranchCreateDto.fromEntity(entity);
+            return BranchReadDto.FromEntity(entity);
         }
 
-        public async Task<BranchUpdateDto> UpdateBranch(BranchUpdateDto model)
+        public async Task<BranchReadDto> UpdateBranch(BranchUpdateDto model)
         {
             var branch = await _branchRepo.GetByIdAsync(model.BranchId);
 
@@ -85,7 +85,7 @@ namespace Application.Service
 
             var updatedBranch = await _branchRepo.GetByIdAsync(model.BranchId);
 
-            return BranchUpdateDto.fromEntity(updatedBranch);
+            return BranchReadDto.FromEntity(updatedBranch);
         }
     }
 }

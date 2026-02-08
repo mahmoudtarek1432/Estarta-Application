@@ -11,7 +11,7 @@ namespace Application.Service.Abstraction
 {
     public interface ICityService
     {
-        public Task<CityReadDto> GetCity(string id);
+        public Task<CityReadDto> GetCity(Guid id);
 
         public Task<CityReadDto> CreateCity(CityCreateDto model);
 

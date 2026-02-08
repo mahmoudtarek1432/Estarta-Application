@@ -23,7 +23,7 @@ namespace Application.Service
             _CityRepo = CityRepo;
         }
 
-        public async Task<CityReadDto> GetCity(string id)
+        public async Task<CityReadDto> GetCity(Guid id)
         {
             var City = await _CityRepo.GetByIdAsync(id);
 

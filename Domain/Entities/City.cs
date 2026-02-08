@@ -4,12 +4,14 @@ using Shared_Kernal.Interfaces;
 
 namespace Domain.Entities
 {
-    public class City : EntityBase<Guid>, IAggregateRoot
+    public class City : EntityBase<Guid>, IAggregateRoot, ISoftDeleteable
     {
         public string NameEn { get; private set; }
         public string NameAr { get; private set; }
         public bool IsActive { get; private set; }
-        public ICollection<Branch> Branches { get; set; }
+        public bool IsDeleted { get; set; }
+        public ICollection<Branch>? Branches { get; set; }
+
         public City() { }
 
         public City(string nameEn, string nameAr, bool isActive)

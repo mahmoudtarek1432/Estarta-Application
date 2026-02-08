@@ -1,11 +1,12 @@
 ﻿using Domain.Entities;
+using Infrastructure.Configuration;
+using Infrastructure.Seed;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Infrastructure.Seed;
 
 namespace Infrastructure.Context
 {
@@ -25,6 +26,8 @@ namespace Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            ModelBuilderConfigurations.SoftdeleteFilter(modelBuilder);
 
             #region Keys
 
@@ -78,7 +81,7 @@ namespace Infrastructure.Context
                                                               .IsRequired();
 
                                      opt.Property(x => x.Code).HasColumnName(nameof(BranchIdentificationInfo.Code))
-                                                              .HasMaxLength(100)
+                                                              .HasMaxLength(50)
                                                               .IsRequired();
 
 
@@ -108,7 +111,8 @@ namespace Infrastructure.Context
             modelBuilder.Entity<Branch>()
                         .HasOne(e => e.City)
                         .WithMany(e => e.Branches)
-                        .HasForeignKey(e => e.CityId);
+                        .HasForeignKey(e => e.CityId)
+                        .IsRequired(true);
             #endregion
 
             #region City

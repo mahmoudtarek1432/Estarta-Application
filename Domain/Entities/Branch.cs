@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class Branch : EntityBase<string>, IAggregateRoot
+    public class Branch : EntityBase<string>, IAggregateRoot, ISoftDeleteable
     {
         public string MerchantId { get; private set; }
         public BranchIdentificationInfo BranchIDInfo { get; set; }
@@ -15,8 +15,9 @@ namespace Domain.Entities
         public BranchContactInfo BranchContactInfo { get; set; }
         public BranchServiceRestrictions BranchServiceRestrictions { get; set; }
         
-        public Guid? CityId { get; set; }
-        public City? City { get; set; }
+        public Guid CityId { get; set; }
+        public City City { get; set; }
+        public bool IsDeleted { get; set; }
 
         public Branch() { }
 

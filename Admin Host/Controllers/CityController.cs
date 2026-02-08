@@ -33,7 +33,7 @@ namespace Admin_Host.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ResponseBase<CityReadDto>> GetCity(string id)
+        public async Task<ResponseBase<CityReadDto>> GetCity(Guid id)
         {
             var resModel = await _CityService.GetCity(id);
 

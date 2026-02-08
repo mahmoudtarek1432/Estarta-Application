@@ -80,6 +80,7 @@ namespace Application.Service
 
             branch.BranchAddressInfo = new BranchAddressInfo(address: model.Address, district: model.District);
 
+            branch.SetCityId(model.CityId);
 
             var entity = await _branchRepo.UpdateAsync(branch);
 

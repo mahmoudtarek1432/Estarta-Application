@@ -19,6 +19,7 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<Branch>> GetBranchesByMerchantId(string merchantId)
         {
             return await _ctx.Branches.Where(e => e.MerchantId == merchantId)
+                                      .Include(e => e.City)
                                       .ToListAsync();
         }
     }

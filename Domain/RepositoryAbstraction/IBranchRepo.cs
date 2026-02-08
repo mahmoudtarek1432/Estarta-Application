@@ -9,5 +9,6 @@ namespace Domain.RepositoryAbstraction
     public interface IBranchRepo : IRepository<Branch>
     {
         Task<IEnumerable<Branch>> GetBranchesByMerchantId(string merchantId);
+        bool BranchWithNameExists(string branchName, string? excludedBranchId = null);
     }
 }

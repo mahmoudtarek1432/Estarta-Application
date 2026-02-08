@@ -15,8 +15,8 @@ namespace Domain.Entities
         public BranchContactInfo BranchContactInfo { get; set; }
         public BranchServiceRestrictions BranchServiceRestrictions { get; set; }
         
-        public Guid CityId { get; set; }
-        public City City { get; set; }
+        public Guid? CityId { get; set; }
+        public City? City { get; set; }
 
         public Branch() { }
 
@@ -43,6 +43,11 @@ namespace Domain.Entities
         {
             Guard.Against.NullOrWhiteSpace(id, nameof(id));
             Id = id;
+        }
+
+        public void SetCityId(Guid cityid)
+        {
+            CityId = cityid;
         }
     }
 }

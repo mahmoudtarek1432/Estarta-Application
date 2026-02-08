@@ -22,7 +22,6 @@ namespace Domain.Entities
         public void SetNameEn(string nameEn)
         {
             Guard.Against.NullOrWhiteSpace(nameEn, nameof(NameEn));
-            Guard.Against.NotAlphaNumeric(nameEn, nameof(NameEn));
             Guard.Against.NotWithinRange(nameEn, 1, 50, nameof(NameEn));
             NameEn = nameEn;
         }
@@ -30,7 +29,6 @@ namespace Domain.Entities
         public void SetNameAr(string nameAr)
         {
             Guard.Against.NullOrWhiteSpace(nameAr, nameof(NameAr));
-            Guard.Against.NotAlphaNumeric(nameAr, nameof(NameAr));
             Guard.Against.NotWithinRange(nameAr, 1, 50, nameof(NameAr));
 
             NameAr = nameAr;

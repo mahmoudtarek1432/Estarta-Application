@@ -108,8 +108,7 @@ namespace Infrastructure.Context
             modelBuilder.Entity<Branch>()
                         .HasOne(e => e.City)
                         .WithMany(e => e.Branches)
-                        .HasForeignKey(e => e.CityId)
-                        .IsRequired();
+                        .HasForeignKey(e => e.CityId);
             #endregion
 
             #region City

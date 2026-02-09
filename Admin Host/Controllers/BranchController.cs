@@ -33,7 +33,7 @@ namespace Admin_Host.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ResponseBase<BranchReadDto>> GetBranch(string id)
+        public async Task<ResponseBase<BranchReadDto>> GetBranch(Guid id)
         {
             var resModel = await _branchService.GetBranch(id);
 
@@ -41,7 +41,7 @@ namespace Admin_Host.Controllers
         }
 
         [HttpGet("merchant/{merchantId}")]
-        public async Task<ResponseBase<IEnumerable<BranchReadDto>>> GetMerchantBranches(string merchantId)
+        public async Task<ResponseBase<IEnumerable<BranchReadDto>>> GetMerchantBranches(Guid merchantId)
         {
             var resModel = await _branchService.GetMerchantBranches(merchantId);
             return ResponseBase<IEnumerable<BranchReadDto>>.Success(resModel);

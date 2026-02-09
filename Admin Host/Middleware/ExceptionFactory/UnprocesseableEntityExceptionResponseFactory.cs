@@ -12,10 +12,7 @@ namespace Admin_Host.Middleware.ExceptionFactory
         public object CreateResponse(Exception exception)
         {
             var validationEx = exception as UnProcessableEntityException;
-            return new ResponseBase
-            {
-                Message = validationEx?.Message ?? "Entity Unprocessable."
-            };
+            return ResponseBase.Error(validationEx?.Message ?? "Entity Unprocessable.");
         }
     }
 }

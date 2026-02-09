@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppCtx))]
-    [Migration("20260205095204_init")]
+    [Migration("20260209114506_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -27,9 +27,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Branch", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -37,9 +41,11 @@ namespace Infrastructure.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("MerchantId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("MerchantId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("datetime2");
@@ -49,15 +55,62 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
                     b.ToTable("Branches");
+                });
+
+            modelBuilder.Entity("Domain.Entities.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Domain.Entities.Branch", b =>
                 {
+                    b.HasOne("Domain.Entities.City", "City")
+                        .WithMany("Branches")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.OwnsOne("Domain.Entities.BranchAddressInfo", "BranchAddressInfo", b1 =>
                         {
-                            b1.Property<string>("BranchId")
-                                .HasColumnType("nvarchar(100)");
+                            b1.Property<Guid>("BranchId")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("Address")
                                 .IsRequired()
@@ -81,8 +134,8 @@ namespace Infrastructure.Migrations
 
                     b.OwnsOne("Domain.Entities.BranchContactInfo", "BranchContactInfo", b1 =>
                         {
-                            b1.Property<string>("BranchId")
-                                .HasColumnType("nvarchar(100)");
+                            b1.Property<Guid>("BranchId")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("ManagerContact")
                                 .IsRequired()
@@ -112,13 +165,13 @@ namespace Infrastructure.Migrations
 
                     b.OwnsOne("Domain.Entities.BranchIdentificationInfo", "BranchIDInfo", b1 =>
                         {
-                            b1.Property<string>("BranchId")
-                                .HasColumnType("nvarchar(100)");
+                            b1.Property<Guid>("BranchId")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("Code")
                                 .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)")
                                 .HasColumnName("Code");
 
                             b1.Property<string>("Name")
@@ -143,8 +196,8 @@ namespace Infrastructure.Migrations
 
                     b.OwnsOne("Domain.Entities.BranchServiceRestrictions", "BranchServiceRestrictions", b1 =>
                         {
-                            b1.Property<string>("BranchId")
-                                .HasColumnType("nvarchar(100)");
+                            b1.Property<Guid>("BranchId")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<bool>("DisableCollection")
                                 .ValueGeneratedOnAdd()
@@ -189,6 +242,13 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("BranchServiceRestrictions")
                         .IsRequired();
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("Domain.Entities.City", b =>
+                {
+                    b.Navigation("Branches");
                 });
 #pragma warning restore 612, 618
         }

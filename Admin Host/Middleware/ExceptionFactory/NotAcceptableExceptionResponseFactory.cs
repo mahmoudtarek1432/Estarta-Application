@@ -13,10 +13,7 @@ namespace Admin_Host.Middleware.ExceptionFactory
         public object CreateResponse(Exception exception)
         {
             var validationEx = exception as NotAcceptableException;
-            return new ResponseBase
-            {
-                Message = validationEx?.Message ?? "Not Acceptable Request."
-            };
+            return ResponseBase.Error(validationEx?.Message ?? "Not Acceptable Request.");
         }
     }
 }

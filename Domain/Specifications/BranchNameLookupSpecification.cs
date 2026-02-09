@@ -9,7 +9,7 @@ namespace Domain.Specifications
         {
             Query.Where(e => e.BranchIDInfo.Name.ToLower() == branchName.ToLower());
         }
-        public BranchNameLookupSpecification(string branchName, string excludedBranchId)
+        public BranchNameLookupSpecification(string branchName, Guid excludedBranchId)
         {
             Query.Where(e => e.BranchIDInfo.Name.ToLower() == branchName.ToLower() && e.Id != excludedBranchId);
         }

@@ -13,10 +13,7 @@ namespace Admin_Host.Middleware.ExceptionFactory
         public object CreateResponse(Exception exception)
         {
             var validationEx = exception as NotFoundException;
-            return new ResponseBase
-            {
-                Message = validationEx?.Message ?? "Resource Not Found."
-            };
+            return ResponseBase.Error(validationEx?.Message ?? "Resource Not Found.");
         }
     }
 }

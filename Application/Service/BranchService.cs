@@ -22,7 +22,7 @@ namespace Application.Service
             _branchRepo = branchRepo;
         }
 
-        public async Task<BranchReadDto> GetBranch(string id)
+        public async Task<BranchReadDto> GetBranch(Guid id)
         {
             var branch = await _branchRepo.GetByIdAsync(id);
 
@@ -32,7 +32,7 @@ namespace Application.Service
             return BranchReadDto.FromEntity(branch);
         }
 
-        public async Task<IEnumerable<BranchReadDto>> GetMerchantBranches(string merchantId)
+        public async Task<IEnumerable<BranchReadDto>> GetMerchantBranches(Guid merchantId)
         {
             var branch = await _branchRepo.GetBranchesByMerchantId(merchantId);
 
@@ -69,13 +69,13 @@ namespace Application.Service
                                                                name: model.BranchName,
                                                                status: model.Status);
 
-            branch.BranchContactInfo = new BranchContactInfo(managerName: model.ManagerName, 
-                                                             managerContact: model.ManagerContact, 
+            branch.BranchContactInfo = new BranchContactInfo(managerName: model.ManagerName,
+                                                             managerContact: model.ManagerContact,
                                                              phoneNumber: model.PhoneNumber);
 
-            branch.BranchServiceRestrictions = new BranchServiceRestrictions(disableRefund: model.DisableRefund, 
-                                                                             disablePartialRefund: model.DisablePartialRefund, 
-                                                                             disableCollection: model.DisableCollection, 
+            branch.BranchServiceRestrictions = new BranchServiceRestrictions(disableRefund: model.DisableRefund,
+                                                                             disablePartialRefund: model.DisablePartialRefund,
+                                                                             disableCollection: model.DisableCollection,
                                                                              disableVouchers: model.DisableVouchers);
 
             branch.BranchAddressInfo = new BranchAddressInfo(address: model.Address, district: model.District);

@@ -13,10 +13,7 @@ namespace Admin_Host.Middleware.ExceptionFactory
         public object CreateResponse(Exception exception)
         {
             var validationEx = exception as BusinessLogicException;
-            return new ResponseBase
-            {
-                Message = validationEx?.Message ?? "Invalid input."
-            };
+            return ResponseBase.Error(validationEx?.Message ?? "Invalid input.");
         }
     }
 }

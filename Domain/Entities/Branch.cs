@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class Branch : EntityBase<string>, IAggregateRoot, ISoftDeleteable
+    public class Branch : EntityBase<Guid>, IAggregateRoot, ISoftDeleteable
     {
-        public string MerchantId { get; private set; }
+        public Guid MerchantId { get; private set; }
         public BranchIdentificationInfo BranchIDInfo { get; set; }
         public BranchAddressInfo BranchAddressInfo { get; set; }
         public BranchContactInfo BranchContactInfo { get; set; }
@@ -21,7 +21,7 @@ namespace Domain.Entities
 
         public Branch() { }
 
-        public Branch (BranchContactInfo branchContact, BranchServiceRestrictions branchSerivces, BranchAddressInfo branchAddressInfo, BranchIdentificationInfo branchIDInfo, string merchantId)
+        public Branch (BranchContactInfo branchContact, BranchServiceRestrictions branchSerivces, BranchAddressInfo branchAddressInfo, BranchIdentificationInfo branchIDInfo, Guid merchantId)
         {
             BranchContactInfo = branchContact;
             BranchServiceRestrictions = branchSerivces;
@@ -30,19 +30,19 @@ namespace Domain.Entities
             SetMerchantId(merchantId);
         }
 
-        public void SetMerchantId(string merchantId)
+        public void SetMerchantId(Guid merchantId)
         {
             //branches shouldn't change merchants
             if (MerchantId != null)
                 throw new BusinessLogicException("The branch is already assigned to a merchant");
 
-            Guard.Against.NullOrWhiteSpace(merchantId, nameof(merchantId));
+            Guard.Against.NullOrEmpty(merchantId, nameof(merchantId));
             MerchantId = merchantId;
         }
 
-        public void SetId(string id)
+        public void SetId(Guid id)
         {
-            Guard.Against.NullOrWhiteSpace(id, nameof(id));
+            Guard.Against.NullOrEmpty(id, nameof(id));
             Id = id;
         }
 
